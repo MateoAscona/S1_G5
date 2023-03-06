@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,8 +18,8 @@ public class HotelObject {
     private String lugarCiudad;
     private String tipoDeHabitacion;
     private Double precioPorNoche;
-    private Date disponibleDesde;
-    private Date disponibleHasta;
+    private LocalDate disponibleDesde;
+    private LocalDate disponibleHasta;
     private boolean reservado;
 
 }

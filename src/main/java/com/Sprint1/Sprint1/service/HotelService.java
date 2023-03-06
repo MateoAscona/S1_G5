@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,30 +20,22 @@ public class HotelService {
     public List<HotelObject> listarHoteles() {
         return hotelRepository.listaDeHoteles();
     }
-
-    public String listarHotelesPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
+    public List<HotelObject> listarHotelesPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
             throws ParseException {
+        List<HotelObject> hotelesBuscados = new ArrayList<>();
 
-        String contador = "";
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
-        Date fechaPartidaFormateada = formatoFecha.parse(fechaPartida);
-        Date fechaRegresoFormateada = formatoFecha.parse(fechaRegreso);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate fechaPartidaFormateada = LocalDate.parse(fechaPartida, formatter).plusDays(1);
+        LocalDate fechaRegresoFormateada = LocalDate.parse(fechaRegreso, formatter).minusDays(1);
 
-
-
-        for (HotelObject hotel: hotelRepository.listaDeHoteles()) {
-
-
-            if (fechaPartidaFormateada.after(hotel.getDisponibleDesde()) &&
-                    fechaRegresoFormateada.before(hotel.getDisponibleHasta())) {
-                contador = contador + "a";
-            } else {
-                contador = contador + "b";
+        for (HotelObject hotel : hotelRepository.listaDeHoteles()) {
+            if (fechaPartidaFormateada.isAfter(hotel.getDisponibleDesde()) &&
+                    fechaRegresoFormateada.isBefore(hotel.getDisponibleHasta()) &&
+                    destino.equals(hotel.getLugarCiudad())) {
+                hotelesBuscados.add(hotel);
             }
-
-
         }
-        return contador;
+        return hotelesBuscados;
     }
 
 }
