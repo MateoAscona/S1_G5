@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,7 +19,7 @@ public class VuelosObject {
     private String destino;
     private String tipoAsiento;
     private Integer precioPorPersona;
-    private String fechaIda;
-    private String fechaVuelta;
+    private LocalDate fechaIda;
+    private LocalDate fechaVuelta;
 
 }

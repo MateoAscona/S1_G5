@@ -77,8 +77,8 @@
     "destino": "Buenos Aires",
     "tipoAsiento": "Business",
     "precioPorPersona": 57000,
-    "fechaIda": "15/02/2022",
-    "fechaVuelta": "28/02/2022"
+    "fechaIda": "2022-02-15",
+    "fechaVuelta": "2022-02-28"
   },
   {
     "nroVuelo": "BOBA-6567",
@@ -86,8 +86,8 @@
     "destino": "Buenos Aires",
     "tipoAsiento": "Economy",
     "precioPorPersona": 39860,
-    "fechaIda": "01/03/2022",
-    "fechaVuelta": "14/03/2022"
+    "fechaIda": "2022-03-01",
+    "fechaVuelta": "2022-03-14"
   },
   {
     "nroVuelo": "BOME-4442",
@@ -95,8 +95,8 @@
     "destino": "Medellín",
     "tipoAsiento": "Economy",
     "precioPorPersona": 11000,
-    "fechaIda": "10/02/2022",
-    "fechaVuelta": "24/02/2022"
+    "fechaIda": "2022-02-10",
+    "fechaVuelta": "2022-02-24"
   },
   {
     "nroVuelo": "MEPI-9986",
@@ -104,7 +104,7 @@
     "destino": "Puerto Iguazú",
     "tipoAsiento": "Business",
     "precioPorPersona": 41640,
-    "fechaIda": "17/04/2022",
-    "fechaVuelta": "02/05/2022"
+    "fechaIda": "2022-04-17",
+    "fechaVuelta": "2022-05-02"
   }
 ]
