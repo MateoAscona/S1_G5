@@ -1,5 +1,9 @@
 package com.Sprint1.Sprint1.repository;
 
+import com.Sprint1.Sprint1.dto.request.HotelBookingDto;
+import com.Sprint1.Sprint1.dto.request.HotelMetodoPagoDto;
+import com.Sprint1.Sprint1.dto.request.HotelPersonasDto;
+import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -58,4 +62,28 @@ public class HotelRepository {
         return hoteles;
     }
 
+    public HotelBookingDto hotelReservado(HotelRequestDto hotelRequestDto) {
+        HotelBookingDto bookingDto = new HotelBookingDto();
+        HotelMetodoPagoDto metodoPagoDto = new HotelMetodoPagoDto();
+
+        bookingDto.setFechaDesde(hotelRequestDto.getHotelBookingDto().getFechaDesde());
+        bookingDto.setFechaHasta(hotelRequestDto.getHotelBookingDto().getFechaHasta());
+        bookingDto.setDestino(hotelRequestDto.getHotelBookingDto().getDestino());
+        bookingDto.setCodigoHotel(hotelRequestDto.getHotelBookingDto().getCodigoHotel());
+        bookingDto.setCantidadPersonas(hotelRequestDto.getHotelBookingDto().getCantidadPersonas());
+        bookingDto.setTipoHabitacion(hotelRequestDto.getHotelBookingDto().getTipoHabitacion());
+
+        metodoPagoDto.setTipo(hotelRequestDto.getHotelBookingDto().getMetodoPago().getTipo());
+        metodoPagoDto.setNumero(hotelRequestDto.getHotelBookingDto().getMetodoPago().getNumero());
+        metodoPagoDto.setCuotas(hotelRequestDto.getHotelBookingDto().getMetodoPago().getCuotas());
+
+        List<HotelPersonasDto> personasDtosList = new ArrayList<>();
+
+        personasDtosList.addAll(hotelRequestDto.getHotelBookingDto().getPersonas());
+
+        bookingDto.setPersonas(personasDtosList);
+        bookingDto.setMetodoPago(metodoPagoDto);
+
+        return bookingDto;
+    }
 }
