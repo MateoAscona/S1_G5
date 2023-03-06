@@ -34,6 +34,7 @@ public class HotelService {
             if (fechaPartidaFormateada.after(hotel.getDisponibleDesde()) &&
                     fechaRegresoFormateada.before(hotel.getDisponibleHasta())) {
                 contador = contador + "a";
+                
             } else {
                 contador = contador + "b";
             }
