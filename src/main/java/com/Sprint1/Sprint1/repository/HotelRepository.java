@@ -1,5 +1,9 @@
 package com.Sprint1.Sprint1.repository;
 
+import com.Sprint1.Sprint1.dto.request.HotelBookingDto;
+import com.Sprint1.Sprint1.dto.request.HotelMetodoPagoDto;
+import com.Sprint1.Sprint1.dto.request.HotelPersonasDto;
+import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +16,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -49,5 +54,5 @@ public class HotelRepository {
 
         return hoteles;
     }
-
+    
 }

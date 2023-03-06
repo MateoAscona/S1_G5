@@ -1,5 +1,12 @@
 package com.Sprint1.Sprint1.service;
 
+import com.Sprint1.Sprint1.dto.request.HotelBookingDto;
+import com.Sprint1.Sprint1.dto.request.HotelMetodoPagoDto;
+import com.Sprint1.Sprint1.dto.request.HotelPersonasDto;
+import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
+import com.Sprint1.Sprint1.dto.response.HotelBookingResponseDto;
+import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
+import com.Sprint1.Sprint1.dto.response.HotelStatusCodeDto;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +43,40 @@ public class HotelService {
             }
         }
         return hotelesBuscados;
+    }
+
+    public HotelResponseDto hotelReservaImpl(HotelRequestDto hotelRequestDto) {
+
+    HotelResponseDto respuestaFinal = new HotelResponseDto();
+    Double precio = 0.0;
+
+    respuestaFinal.setUserName(hotelRequestDto.getUserName());
+
+
+
+        for (HotelObject hotel : hotelRepository.getHotelesCargados()) {
+
+            if(hotel.getCodigoHotel().equals(hotelRequestDto.getHotelBookingDto().getCodigoHotel())){
+                precio = hotel.getPrecioPorNoche();
+            }
+        }
+    respuestaFinal.setTotal(hotelRequestDto.getHotelBookingDto().getCantidadPersonas() * precio);
+
+        HotelBookingResponseDto reserva = new HotelBookingResponseDto();
+
+        reserva.setFechaDesde(hotelRequestDto.getHotelBookingDto().getFechaDesde());
+        reserva.setFechaHasta(hotelRequestDto.getHotelBookingDto().getFechaHasta());
+        reserva.setDestino(hotelRequestDto.getHotelBookingDto().getDestino());
+        reserva.setCodigoHotel(hotelRequestDto.getHotelBookingDto().getCodigoHotel());
+        reserva.setCantidadPersonas(hotelRequestDto.getHotelBookingDto().getCantidadPersonas());
+        reserva.setTipoHabitacion(hotelRequestDto.getHotelBookingDto().getTipoHabitacion());
+        reserva.setPersonas(hotelRequestDto.getHotelBookingDto().getPersonas());
+
+        reserva.setEstado(new HotelStatusCodeDto(200,"Funca"));
+
+        respuestaFinal.setHotelBookingDto(reserva);
+
+        return respuestaFinal;
     }
 
 }
