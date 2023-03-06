@@ -22,7 +22,7 @@ public class HotelService {
         return hotelRepository.listaDeHoteles();
     }
 
-    public String listarHotelesPorFechaDestino(String fechaPartida, String fechaRegreso, String Destino)
+    public String listarHotelesPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
             throws ParseException {
 
         String contador = "";
@@ -30,13 +30,19 @@ public class HotelService {
         Date fechaPartidaFormateada = formatoFecha.parse(fechaPartida);
         Date fechaRegresoFormateada = formatoFecha.parse(fechaRegreso);
 
+
+
         for (HotelObject hotel: hotelRepository.listaDeHoteles()) {
+
+
             if (fechaPartidaFormateada.after(hotel.getDisponibleDesde()) &&
                     fechaRegresoFormateada.before(hotel.getDisponibleHasta())) {
                 contador = contador + "a";
             } else {
                 contador = contador + "b";
             }
+            
+
         }
         return contador;
     }

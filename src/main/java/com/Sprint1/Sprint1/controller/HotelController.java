@@ -24,9 +24,9 @@ public class HotelController {
     }
 
     @GetMapping("/api/v1/hotels/buscar")
-    public String buscarHotelPorFecha(@RequestParam String fechaPartida,
-                                      @RequestParam String fechaRegreso,
-                                      @RequestParam String destino) throws ParseException {
+    public String buscarHotelPorFecha(@RequestParam(required = false) String fechaPartida,
+                                      @RequestParam(required = false) String fechaRegreso,
+                                      @RequestParam(required = false) String destino) throws ParseException {
 
         return hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
     }
