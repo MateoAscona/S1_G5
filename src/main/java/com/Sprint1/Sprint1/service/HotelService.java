@@ -41,7 +41,7 @@ public class HotelService {
             } else {
                 contador = contador + "b";
             }
-            
+
 
         }
         return contador;
