@@ -76,7 +76,7 @@
     "origen": "Bogotá",
     "destino": "Buenos Aires",
     "tipoAsiento": "Business",
-    "precioPorPersona": "$57.000",
+    "precioPorPersona": 57000,
     "fechaIda": "15/02/2022",
     "fechaVuelta": "28/02/2022"
   },
@@ -85,7 +85,7 @@
     "origen": "Bogotá",
     "destino": "Buenos Aires",
     "tipoAsiento": "Economy",
-    "precioPorPersona": "$39.860",
+    "precioPorPersona": 39860,
     "fechaIda": "01/03/2022",
     "fechaVuelta": "14/03/2022"
   },
@@ -94,7 +94,7 @@
     "origen": "Bogotá",
     "destino": "Medellín",
     "tipoAsiento": "Economy",
-    "precioPorPersona": "$11.000",
+    "precioPorPersona": 11000,
     "fechaIda": "10/02/2022",
     "fechaVuelta": "24/02/2022"
   },
@@ -103,7 +103,7 @@
     "origen": "Medellín",
     "destino": "Puerto Iguazú",
     "tipoAsiento": "Business",
-    "precioPorPersona": "$41.640",
+    "precioPorPersona": 41640,
     "fechaIda": "17/04/2022",
     "fechaVuelta": "02/05/2022"
   }

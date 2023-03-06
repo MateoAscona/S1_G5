@@ -1,8 +1,5 @@
 package com.Sprint1.Sprint1.service;
 
-import com.Sprint1.Sprint1.dto.request.HotelBookingDto;
-import com.Sprint1.Sprint1.dto.request.HotelMetodoPagoDto;
-import com.Sprint1.Sprint1.dto.request.HotelPersonasDto;
 import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelBookingResponseDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
