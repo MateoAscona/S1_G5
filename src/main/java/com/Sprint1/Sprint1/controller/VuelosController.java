@@ -25,6 +25,7 @@ public class VuelosController {
 
     @PostMapping("/api/v1/flight-reservation")
     public VueloResponseDto reservarVuelo(@RequestBody VueloRequestDto vueloRequestDto){
+
         return vuelosService.reservarVueloImpl(vueloRequestDto);
     }
 

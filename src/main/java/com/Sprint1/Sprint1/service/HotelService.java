@@ -24,8 +24,10 @@ public class HotelService {
 
     public List<HotelObject> listarHotelesPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
             throws ParseException {
-        if(fechaPartida == null || fechaRegreso == null || destino == null){
+        if(fechaPartida == null && fechaRegreso == null && destino == null){
             return hotelRepository.listaDeHoteles();
+        }else if (fechaPartida == null || fechaRegreso == null || destino == null) {
+            throw new RuntimeException("Ingrese los parámetros requeridos.");
         }
         List<HotelObject> hotelesBuscados = new ArrayList<>();
 
@@ -40,6 +42,11 @@ public class HotelService {
                 hotelesBuscados.add(hotel);
             }
         }
+
+        if(hotelesBuscados.size() == 0) {
+            throw new RuntimeException("No se encontró ningún hotel.");
+        }
+
         return hotelesBuscados;
     }
 
@@ -47,6 +54,8 @@ public class HotelService {
 
     HotelResponseDto respuestaFinal = new HotelResponseDto();
     Double precio = 0.0;
+    try {
+
 
     respuestaFinal.setUserName(hotelRequestDto.getUserName());
 
@@ -75,6 +84,10 @@ public class HotelService {
         respuestaFinal.setHotelBookingDto(reserva);
 
         return respuestaFinal;
+    } catch (RuntimeException e) {
+        throw new RuntimeException("No funca.");
     }
+    }
+
 
 }
