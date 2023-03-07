@@ -18,7 +18,7 @@ public class VuelosObject {
     private String origen;
     private String destino;
     private String tipoAsiento;
-    private Integer precioPorPersona;
+    private Double precioPorPersona;
     private LocalDate fechaIda;
     private LocalDate fechaVuelta;
 

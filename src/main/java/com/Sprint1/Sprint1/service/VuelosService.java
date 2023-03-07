@@ -1,5 +1,7 @@
 package com.Sprint1.Sprint1.service;
 
+import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
+import com.Sprint1.Sprint1.dto.response.*;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.repository.VuelosRepository;
@@ -40,4 +42,36 @@ public class VuelosService {
         return vuelosBuscados;
     }
 
+    public VueloResponseDto reservarVueloImpl(VueloRequestDto vueloRequestDto){
+
+        VueloResponseDto respuestaFinal = new VueloResponseDto();
+        Double precio = 0.0;
+
+        respuestaFinal.setUserName(vueloRequestDto.getUserName());
+
+        for (VuelosObject vuelos : vuelosRepository.getVuelosCargados()) {
+
+            if(vuelos.getNroVuelo().equals(vueloRequestDto.getVueloReservaDto().getCodigoVuelo())){
+                precio = vuelos.getPrecioPorPersona();
+            }
+        }
+        respuestaFinal.setTotal(vueloRequestDto.getVueloReservaDto().getCantidadAsientos() * precio);
+
+        VueloReservaResponseDto reserva = new VueloReservaResponseDto();
+
+        reserva.setFechaDesde(vueloRequestDto.getVueloReservaDto().getFechaDesde());
+        reserva.setFechaHasta(vueloRequestDto.getVueloReservaDto().getFechaHasta());
+        reserva.setOrigen(vueloRequestDto.getVueloReservaDto().getOrigen());
+        reserva.setDestino(vueloRequestDto.getVueloReservaDto().getDestino());
+        reserva.setCodigoVuelo(vueloRequestDto.getVueloReservaDto().getCodigoVuelo());
+        reserva.setCantidadAsientos(vueloRequestDto.getVueloReservaDto().getCantidadAsientos());
+        reserva.setClaseAsiento(vueloRequestDto.getVueloReservaDto().getClaseAsientos());
+        reserva.setPersonas(vueloRequestDto.getVueloReservaDto().getPersonas());
+
+        reserva.setEstado(new StatusCodeDto(200,"Funca"));
+
+        respuestaFinal.setVueloReservaResponseDto(reserva);
+
+        return respuestaFinal;
+    }
 }

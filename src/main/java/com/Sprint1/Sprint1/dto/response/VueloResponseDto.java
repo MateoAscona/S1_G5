@@ -1,5 +1,6 @@
 package com.Sprint1.Sprint1.dto.response;
 
+import com.Sprint1.Sprint1.dto.request.PersonasDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class HotelStatusCodeDto {
-    private Integer code;
-
-    private String mensaje;
+public class VueloResponseDto {
+    private String userName;
+    private Double total;
+    private VueloReservaResponseDto vueloReservaResponseDto;
 }

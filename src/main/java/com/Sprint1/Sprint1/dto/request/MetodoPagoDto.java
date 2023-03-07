@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class HotelMetodoPagoDto {
+public class MetodoPagoDto {
     private String tipo;
     private String numero;
     private Integer cuotas;

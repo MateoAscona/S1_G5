@@ -16,15 +16,17 @@ public class HotelController {
     HotelService hotelService;
 
 
-    @GetMapping("/api/v1/hotels")
+    /*@GetMapping("/api/v1/hotels")
     public List<HotelObject> listadoHoteles(){
     return hotelService.listarHoteles();
     }
 
-    @GetMapping("/api/v1/hotels/buscar")
-    public List<HotelObject> buscarHotelPorFecha(@RequestParam String fechaPartida,
-                                                   @RequestParam String fechaRegreso,
-                                                   @RequestParam String destino) throws ParseException {
+     */
+
+    @GetMapping("/api/v1/hotels")
+    public List<HotelObject> buscarHotelPorFecha(@RequestParam(required = false) String fechaPartida,
+                                                   @RequestParam(required = false) String fechaRegreso,
+                                                   @RequestParam(required = false) String destino) throws ParseException {
 
         return hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
     }

@@ -1,13 +1,11 @@
 package com.Sprint1.Sprint1.dto.response;
 
-import com.Sprint1.Sprint1.dto.request.HotelMetodoPagoDto;
-import com.Sprint1.Sprint1.dto.request.HotelPersonasDto;
+import com.Sprint1.Sprint1.dto.request.PersonasDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -22,7 +20,7 @@ public class HotelBookingResponseDto {
     private Integer cantidadPersonas;
     private String tipoHabitacion;
 
-    private List<HotelPersonasDto> personas;
+    private List<PersonasDto> personas;
 
-    private HotelStatusCodeDto estado;
+    private StatusCodeDto estado;
 }

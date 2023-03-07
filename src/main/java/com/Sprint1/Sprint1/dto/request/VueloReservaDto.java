@@ -6,20 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class HotelBookingDto {
+public class VueloReservaDto {
     private String fechaDesde;
     private String fechaHasta;
+    private String origen;
     private String destino;
-    private String codigoHotel;
-    private Integer cantidadPersonas;
-    private String tipoHabitacion;
+    private String codigoVuelo;
+    private Integer cantidadAsientos;
+    private String claseAsientos;
 
     private List<PersonasDto> personas;
     private MetodoPagoDto metodoPago;
-
 }
