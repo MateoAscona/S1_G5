@@ -1,9 +1,7 @@
 package com.Sprint1.Sprint1.controller;
 
 import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
-import com.Sprint1.Sprint1.dto.request.VueloReservaDto;
 import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
-import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.service.VuelosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +14,11 @@ import java.util.List;
 public class VuelosController {
     @Autowired
     VuelosService vuelosService;
-    @GetMapping("/api/v1/flights")
-    public List<VuelosObject> listarVuelos(){
-        return vuelosService.listarVuelos();
-    }
 
-    @GetMapping("/api/v1/flights/buscar")
-    public List<VuelosObject> buscarHotelPorFecha(@RequestParam String fechaPartida,
-                                                 @RequestParam String fechaRegreso,
-                                                 @RequestParam String destino) throws ParseException{
+    @GetMapping("/api/v1/flights")
+    public List<VuelosObject> buscarHotelPorFecha(@RequestParam(required = false) String fechaPartida,
+                                                 @RequestParam(required = false) String fechaRegreso,
+                                                 @RequestParam(required = false) String destino) throws ParseException{
 
         return vuelosService.listarVuelosPorFechaDestino(fechaPartida, fechaRegreso, destino);
     }

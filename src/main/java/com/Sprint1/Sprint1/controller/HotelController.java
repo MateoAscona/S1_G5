@@ -15,14 +15,6 @@ public class HotelController {
     @Autowired
     HotelService hotelService;
 
-
-    /*@GetMapping("/api/v1/hotels")
-    public List<HotelObject> listadoHoteles(){
-    return hotelService.listarHoteles();
-    }
-
-     */
-
     @GetMapping("/api/v1/hotels")
     public List<HotelObject> buscarHotelPorFecha(@RequestParam(required = false) String fechaPartida,
                                                    @RequestParam(required = false) String fechaRegreso,

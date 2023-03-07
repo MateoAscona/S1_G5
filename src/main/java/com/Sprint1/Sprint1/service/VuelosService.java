@@ -23,9 +23,13 @@ public class VuelosService {
         return vuelosRepository.listaDeVuelos();
     }
 
-
     public List<VuelosObject> listarVuelosPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
             throws ParseException {
+
+        if(fechaPartida == null || fechaRegreso == null || destino == null){
+            return vuelosRepository.listaDeVuelos();
+        }
+
         List<VuelosObject> vuelosBuscados = new ArrayList<>();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");

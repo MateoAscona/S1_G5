@@ -21,11 +21,7 @@ public class HotelService {
     @Autowired
     HotelRepository hotelRepository;
 
-    /*public List<HotelObject> listarHoteles() {
-        return hotelRepository.listaDeHoteles();
-    }
 
-     */
     public List<HotelObject> listarHotelesPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
             throws ParseException {
         if(fechaPartida == null || fechaRegreso == null || destino == null){
