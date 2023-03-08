@@ -21,7 +21,6 @@ public class HotelService {
     @Autowired
     HotelRepository hotelRepository;
 
-
     public List<HotelObject> listarHotelesPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
             throws ParseException {
         if(fechaPartida == null || fechaRegreso == null || destino == null){
@@ -50,8 +49,6 @@ public class HotelService {
 
     respuestaFinal.setUserName(hotelRequestDto.getUserName());
 
-
-
         for (HotelObject hotel : hotelRepository.getHotelesCargados()) {
 
             if(hotel.getCodigoHotel().equals(hotelRequestDto.getHotelBookingDto().getCodigoHotel())){
@@ -76,5 +73,4 @@ public class HotelService {
 
         return respuestaFinal;
     }
-
 }

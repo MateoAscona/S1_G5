@@ -26,7 +26,7 @@ public class VuelosService {
     public List<VuelosObject> listarVuelosPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
             throws ParseException {
 
-        if(fechaPartida == null || fechaRegreso == null || destino == null){
+        if(fechaPartida == null && fechaRegreso == null && destino == null){
             return vuelosRepository.listaDeVuelos();
         }
 
