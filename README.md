@@ -1,8 +1,23 @@
 S1_G5
 
 
-Integrantes: Mateo Ascona, Jonatan Garcia, Gisel Lorenzatti, Franco Ambort, Celeste Sanchez, Gisela Burgos.
-Repositorio sprint 1, bootcamp de Java
+### Integrantes
+- Mateo Ascona
+- Jonatan Garcia
+- Gisel Lorenzatti
+- Franco Ambort
+- Celeste Sanchez
+- Gisela Burgos.
+
+Repositorio Sprint 1, bootcamp de Java.
+
+#### Aclaracion
+
+Tomamos la decision de realizar todo en idioma español a excepcion de cosas propias del desarrollo (Ej. Request, Response).
+
+### Datos para realizar pruebas
+
+#### Hoteles:
 
 Link para todos los hoteles: http://localhost:8080/api/v1/hotels
 
@@ -15,8 +30,8 @@ http://localhost:8080/api/v1/hotel?dateFrom=11/02/2022&dateTo=10/03/2022&destina
 Link para la reserva de hotel: http://localhost:8080/api/v1/booking
 
 {
-    "userName": "Cristian",
-    "hotelBookingDto":
+    "nombreUsuario": "Cristian",
+    "hotelBooking":
         {
             "fechaDesde": "20",
             "fechaHasta": "20",
@@ -47,6 +62,9 @@ Link para la reserva de hotel: http://localhost:8080/api/v1/booking
             } 
         }
 }
+
+### Vuelos:
+
 Link para todos los vuelos: http://localhost:8080/api/v1/flights
 
 Links para testear filtro: http://localhost:8080/api/v1/flights?fechaPartida=2022/02/10&fechaRegreso=2022/02/21&destino=Bogotá
@@ -55,8 +73,8 @@ Links para testear filtro: http://localhost:8080/api/v1/flights?fechaPartida=202
 Link para la reserva del vuelo: http://localhost:8080/api/v1/flight-reservation
 (metodo POST objeto de ejemplo)
 {
-    "userName": "arjonamiguel@gmail.com",
-    "vueloReservaDto": {
+    "nombreUsuario": "arjonamiguel@gmail.com",
+    "vueloReserva": {
         "fechaDesde": "2021/11/10",
         "fechaHasta": "2021/11/10",
         "origen": "Buenos Aires",

@@ -11,5 +11,5 @@ import lombok.Setter;
 @Setter
 public class VueloRequestDto {
     private String nombreUsuario;
-    private VueloReservaDto vueloReservaDto;
+    private VueloReservaDto vueloReserva;
 }

@@ -11,5 +11,5 @@ import lombok.Setter;
 @Setter
 public class HotelRequestDto {
     private String nombreUsuario;
-    private HotelReservaDto hotelReservaDto;
+    private HotelReservaDto hotelReserva;
 }

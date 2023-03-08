@@ -63,22 +63,22 @@ public class VuelosService {
 
         for (VuelosObject vuelos : vuelosRepository.getVuelosCargados()) {
 
-            if(vuelos.getNroVuelo().equals(vueloRequestDto.getVueloReservaDto().getCodigoVuelo())){
+            if(vuelos.getNroVuelo().equals(vueloRequestDto.getVueloReserva().getCodigoVuelo())){
                 precio = vuelos.getPrecioPorPersona();
             }
         }
-        respuestaFinal.setTotal(vueloRequestDto.getVueloReservaDto().getCantidadAsientos() * precio);
+        respuestaFinal.setTotal(vueloRequestDto.getVueloReserva().getCantidadAsientos() * precio);
 
         VueloReservaResponseDto reserva = new VueloReservaResponseDto();
 
-        reserva.setFechaDesde(vueloRequestDto.getVueloReservaDto().getFechaDesde());
-        reserva.setFechaHasta(vueloRequestDto.getVueloReservaDto().getFechaHasta());
-        reserva.setOrigen(vueloRequestDto.getVueloReservaDto().getOrigen());
-        reserva.setDestino(vueloRequestDto.getVueloReservaDto().getDestino());
-        reserva.setCodigoVuelo(vueloRequestDto.getVueloReservaDto().getCodigoVuelo());
-        reserva.setCantidadAsientos(vueloRequestDto.getVueloReservaDto().getCantidadAsientos());
-        reserva.setClaseAsiento(vueloRequestDto.getVueloReservaDto().getClaseAsientos());
-        reserva.setPersonas(vueloRequestDto.getVueloReservaDto().getPersonas());
+        reserva.setFechaDesde(vueloRequestDto.getVueloReserva().getFechaDesde());
+        reserva.setFechaHasta(vueloRequestDto.getVueloReserva().getFechaHasta());
+        reserva.setOrigen(vueloRequestDto.getVueloReserva().getOrigen());
+        reserva.setDestino(vueloRequestDto.getVueloReserva().getDestino());
+        reserva.setCodigoVuelo(vueloRequestDto.getVueloReserva().getCodigoVuelo());
+        reserva.setCantidadAsientos(vueloRequestDto.getVueloReserva().getCantidadAsientos());
+        reserva.setClaseAsiento(vueloRequestDto.getVueloReserva().getClaseAsientos());
+        reserva.setPersonas(vueloRequestDto.getVueloReserva().getPersonas());
 
         reserva.setEstado(new StatusCodeDto(200,"Funca"));
 

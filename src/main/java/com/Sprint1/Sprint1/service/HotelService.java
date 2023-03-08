@@ -60,21 +60,21 @@ public class HotelService {
 
         for (HotelObject hotel : hotelRepository.getHotelesCargados()) {
 
-            if(hotel.getCodigoHotel().equals(hotelRequestDto.getHotelReservaDto().getCodigoHotel())){
+            if(hotel.getCodigoHotel().equals(hotelRequestDto.getHotelReserva().getCodigoHotel())){
                 precio = hotel.getPrecioPorNoche();
             }
         }
-    respuestaFinal.setTotal(hotelRequestDto.getHotelReservaDto().getCantidadPersonas() * precio);
+    respuestaFinal.setTotal(hotelRequestDto.getHotelReserva().getCantidadPersonas() * precio);
 
         HotelReservaResponseDto reserva = new HotelReservaResponseDto();
 
-        reserva.setFechaDesde(hotelRequestDto.getHotelReservaDto().getFechaDesde());
-        reserva.setFechaHasta(hotelRequestDto.getHotelReservaDto().getFechaHasta());
-        reserva.setDestino(hotelRequestDto.getHotelReservaDto().getDestino());
-        reserva.setCodigoHotel(hotelRequestDto.getHotelReservaDto().getCodigoHotel());
-        reserva.setCantidadPersonas(hotelRequestDto.getHotelReservaDto().getCantidadPersonas());
-        reserva.setTipoHabitacion(hotelRequestDto.getHotelReservaDto().getTipoHabitacion());
-        reserva.setPersonas(hotelRequestDto.getHotelReservaDto().getPersonas());
+        reserva.setFechaDesde(hotelRequestDto.getHotelReserva().getFechaDesde());
+        reserva.setFechaHasta(hotelRequestDto.getHotelReserva().getFechaHasta());
+        reserva.setDestino(hotelRequestDto.getHotelReserva().getDestino());
+        reserva.setCodigoHotel(hotelRequestDto.getHotelReserva().getCodigoHotel());
+        reserva.setCantidadPersonas(hotelRequestDto.getHotelReserva().getCantidadPersonas());
+        reserva.setTipoHabitacion(hotelRequestDto.getHotelReserva().getTipoHabitacion());
+        reserva.setPersonas(hotelRequestDto.getHotelReserva().getPersonas());
 
         reserva.setEstado(new StatusCodeDto(200,"Funca"));
 
