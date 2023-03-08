@@ -28,6 +28,8 @@ public class VuelosService {
 
         if(fechaPartida == null && fechaRegreso == null && destino == null){
             return vuelosRepository.listaDeVuelos();
+        } else if (fechaPartida == null || fechaRegreso == null || destino == null) {
+            throw new RuntimeException("Ingrese los parámetros requeridos.");
         }
 
         List<VuelosObject> vuelosBuscados = new ArrayList<>();
@@ -43,6 +45,11 @@ public class VuelosService {
                 vuelosBuscados.add(vuelos);
             }
         }
+
+        if(vuelosBuscados.size() == 0) {
+            throw new RuntimeException("No se encontró ningún vuelo.");
+        }
+
         return vuelosBuscados;
     }
 
