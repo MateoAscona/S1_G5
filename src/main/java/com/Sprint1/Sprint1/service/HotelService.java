@@ -1,9 +1,11 @@
 package com.Sprint1.Sprint1.service;
 
 import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
-import com.Sprint1.Sprint1.dto.response.HotelBookingResponseDto;
+import com.Sprint1.Sprint1.dto.response.HotelReservaResponseDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.dto.response.StatusCodeDto;
+import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
+import com.Sprint1.Sprint1.exception.SinParametrosException;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class HotelService {
         if(fechaPartida == null && fechaRegreso == null && destino == null){
             return hotelRepository.listaDeHoteles();
         }else if (fechaPartida == null || fechaRegreso == null || destino == null) {
-            throw new RuntimeException("Ingrese los parámetros requeridos.");
+            throw new SinParametrosException();
         }
         List<HotelObject> hotelesBuscados = new ArrayList<>();
 
@@ -43,7 +45,7 @@ public class HotelService {
         }
 
         if(hotelesBuscados.size() == 0) {
-            throw new RuntimeException("No se encontró ningún hotel.");
+            throw new HotelNoEncontradoException();
         }
 
         return hotelesBuscados;
@@ -53,41 +55,32 @@ public class HotelService {
 
     HotelResponseDto respuestaFinal = new HotelResponseDto();
     Double precio = 0.0;
-    try {
 
-
-    respuestaFinal.setUserName(hotelRequestDto.getUserName());
+    respuestaFinal.setNombreUsuario(hotelRequestDto.getNombreUsuario());
 
         for (HotelObject hotel : hotelRepository.getHotelesCargados()) {
 
-            if(hotel.getCodigoHotel().equals(hotelRequestDto.getHotelBookingDto().getCodigoHotel())){
+            if(hotel.getCodigoHotel().equals(hotelRequestDto.getHotelReservaDto().getCodigoHotel())){
                 precio = hotel.getPrecioPorNoche();
             }
         }
-    respuestaFinal.setTotal(hotelRequestDto.getHotelBookingDto().getCantidadPersonas() * precio);
+    respuestaFinal.setTotal(hotelRequestDto.getHotelReservaDto().getCantidadPersonas() * precio);
 
-        HotelBookingResponseDto reserva = new HotelBookingResponseDto();
+        HotelReservaResponseDto reserva = new HotelReservaResponseDto();
 
-        reserva.setFechaDesde(hotelRequestDto.getHotelBookingDto().getFechaDesde());
-        reserva.setFechaHasta(hotelRequestDto.getHotelBookingDto().getFechaHasta());
-        reserva.setDestino(hotelRequestDto.getHotelBookingDto().getDestino());
-        reserva.setCodigoHotel(hotelRequestDto.getHotelBookingDto().getCodigoHotel());
-        reserva.setCantidadPersonas(hotelRequestDto.getHotelBookingDto().getCantidadPersonas());
-        reserva.setTipoHabitacion(hotelRequestDto.getHotelBookingDto().getTipoHabitacion());
-        reserva.setPersonas(hotelRequestDto.getHotelBookingDto().getPersonas());
+        reserva.setFechaDesde(hotelRequestDto.getHotelReservaDto().getFechaDesde());
+        reserva.setFechaHasta(hotelRequestDto.getHotelReservaDto().getFechaHasta());
+        reserva.setDestino(hotelRequestDto.getHotelReservaDto().getDestino());
+        reserva.setCodigoHotel(hotelRequestDto.getHotelReservaDto().getCodigoHotel());
+        reserva.setCantidadPersonas(hotelRequestDto.getHotelReservaDto().getCantidadPersonas());
+        reserva.setTipoHabitacion(hotelRequestDto.getHotelReservaDto().getTipoHabitacion());
+        reserva.setPersonas(hotelRequestDto.getHotelReservaDto().getPersonas());
 
         reserva.setEstado(new StatusCodeDto(200,"Funca"));
 
-        respuestaFinal.setHotelBookingDto(reserva);
+        respuestaFinal.setHotelReservaResponseDto(reserva);
 
         return respuestaFinal;
-    } catch (RuntimeException e) {
-        throw new RuntimeException("No funca.");
-    }
-    }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 7715c9042e8fe0f047cb3bd4446a3f57f6006456
+    }
 }

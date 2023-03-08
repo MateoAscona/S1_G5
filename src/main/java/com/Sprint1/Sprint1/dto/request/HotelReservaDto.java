@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class HotelBookingDto {
+public class HotelReservaDto {
     private String fechaDesde;
     private String fechaHasta;
     private String destino;

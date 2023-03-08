@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class HotelBookingResponseDto {
+public class HotelReservaResponseDto {
     private String fechaDesde;
     private String fechaHasta;
     private String destino;

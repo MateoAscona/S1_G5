@@ -1,4 +1,4 @@
-package com.Sprint1.Sprint1.dto.request;
+package com.Sprint1.Sprint1.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class VueloRequestDto {
-    private String nombreUsuario;
-    private VueloReservaDto vueloReservaDto;
+public class ExceptionDto {
+    String message;
+
 }

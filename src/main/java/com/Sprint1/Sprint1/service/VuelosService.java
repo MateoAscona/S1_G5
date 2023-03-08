@@ -2,7 +2,8 @@ package com.Sprint1.Sprint1.service;
 
 import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
 import com.Sprint1.Sprint1.dto.response.*;
-import com.Sprint1.Sprint1.model.HotelObject;
+import com.Sprint1.Sprint1.exception.SinParametrosException;
+import com.Sprint1.Sprint1.exception.VueloNoEncontradoException;
 import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.repository.VuelosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class VuelosService {
         if(fechaPartida == null && fechaRegreso == null && destino == null){
             return vuelosRepository.listaDeVuelos();
         } else if (fechaPartida == null || fechaRegreso == null || destino == null) {
-            throw new RuntimeException("Ingrese los parámetros requeridos.");
+            throw new SinParametrosException();
         }
 
         List<VuelosObject> vuelosBuscados = new ArrayList<>();
@@ -47,7 +48,7 @@ public class VuelosService {
         }
 
         if(vuelosBuscados.size() == 0) {
-            throw new RuntimeException("No se encontró ningún vuelo.");
+            throw new VueloNoEncontradoException();
         }
 
         return vuelosBuscados;
@@ -58,7 +59,7 @@ public class VuelosService {
         VueloResponseDto respuestaFinal = new VueloResponseDto();
         Double precio = 0.0;
 
-        respuestaFinal.setUserName(vueloRequestDto.getUserName());
+        respuestaFinal.setUserName(vueloRequestDto.getNombreUsuario());
 
         for (VuelosObject vuelos : vuelosRepository.getVuelosCargados()) {
 

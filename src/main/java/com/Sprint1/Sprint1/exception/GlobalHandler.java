@@ -1,5 +1,6 @@
 package com.Sprint1.Sprint1.exception;
 
+import com.Sprint1.Sprint1.dto.ExceptionDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -10,24 +11,20 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
 public class GlobalHandler {
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> handlerRuntime(RuntimeException exception){
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-    }
 
-    @ExceptionHandler(SinParametrosException.class)
-    public ResponseEntity<String> handlerRuntime(SinParametrosException exception){
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ExceptionDto> handlerRuntime(RuntimeException exception){
+
+        ExceptionDto mensaje = new ExceptionDto(exception.getMessage());
+
+        return new ResponseEntity<>(mensaje, HttpStatus.BAD_REQUEST);
     }
-    
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<String> handleBadRequestException(HttpMessageNotReadableException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos ingresados incorrectos.");
-    }
+    public ResponseEntity<ExceptionDto> handleBadRequestException(HttpMessageNotReadableException ex) {
 
-    @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<String> handleNotFoundException(NoHandlerFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La ruta es incorrecta. Ingrese a http://localhost:8080/api/v1/hotels");
+        ExceptionDto mensaje = new ExceptionDto("Datos ingresados incorrectos.");
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
     }
 }

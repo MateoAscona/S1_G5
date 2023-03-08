@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class HotelRequestDto {
-    private String userName;
-    private HotelBookingDto hotelBookingDto;
+    private String nombreUsuario;
+    private HotelReservaDto hotelReservaDto;
 }
