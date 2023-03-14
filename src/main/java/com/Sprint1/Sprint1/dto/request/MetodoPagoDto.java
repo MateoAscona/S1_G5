@@ -1,17 +1,21 @@
 package com.Sprint1.Sprint1.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class MetodoPagoDto {
+    @NotBlank
     private String tipo;
+    @Size(min = 6)
     private String numero;
+
+    @NotNull
     private Integer cuotas;
 
 }

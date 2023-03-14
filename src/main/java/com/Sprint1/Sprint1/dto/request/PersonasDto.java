@@ -1,20 +1,22 @@
 package com.Sprint1.Sprint1.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import javax.validation.constraints.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class PersonasDto {
+    @NotBlank
+    @Min(8)
     private String dni;
+    @NotBlank
     private String nombre;
+    @NotBlank
     private String apellido;
+    @NotBlank
     private String fechaNacimiento;
+    @Email()
     private String email;
-
-
 }

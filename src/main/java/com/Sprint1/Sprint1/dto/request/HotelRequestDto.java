@@ -1,15 +1,17 @@
 package com.Sprint1.Sprint1.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
+@Validated
 public class HotelRequestDto {
+    @NotBlank(message = "El nombre de usuario es obligatorio")
     private String nombreUsuario;
-    private HotelReservaDto hotelReserva;
+    private @Valid HotelReservaDto hotelReserva;
 }
