@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Data
 public class PersonasDto {
-    @Size(min = 7, message = "El DNI debe ser valido (8 caracteres)")
+    @Size(max = 8, message = "El DNI debe ser valido (8 caracteres)")
     private String dni;
     @Size(min = 3, max = 15, message = "El nombre debe tener entre 3 y 15 caracteres")
     private String nombre;

@@ -8,8 +8,6 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.ConstraintViolation;
@@ -26,7 +24,7 @@ public class GlobalHandler {
         return new ResponseEntity<>(mensaje, HttpStatus.BAD_REQUEST);
     }
 
-    /*@ExceptionHandler(HttpMessageNotReadableException.class)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ExceptionDto> handleBadRequestException(HttpMessageNotReadableException ex) {
 
         ExceptionDto mensaje = new ExceptionDto("Datos ingresados incorrectos.");
@@ -34,7 +32,6 @@ public class GlobalHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
     }
 
-     */
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationDTO> validationException(MethodArgumentNotValidException e){
@@ -44,7 +41,6 @@ public class GlobalHandler {
                 )
         );
     }
-
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ValidationDTO> validationException(ConstraintViolationException e){
         return ResponseEntity.ok(

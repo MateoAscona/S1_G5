@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 
 public class HotelObject {
     private String codigoHotel;

@@ -27,6 +27,7 @@ public class UtilMethods {
 
     public void existeDestino(String destino){
         List<HotelObject> acumulador = new ArrayList<>();
+
         for (HotelObject hotel : hotelRepository.listaDeHoteles()) {
             if (hotel.getLugarCiudad().equals(destino)){
                 acumulador.add(hotel);
