@@ -11,7 +11,6 @@ import com.Sprint1.Sprint1.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -23,8 +22,7 @@ public class HotelService {
     @Autowired
     HotelRepository hotelRepository;
 
-    public List<HotelObject> listarHotelesPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
-            throws ParseException {
+    public List<HotelObject> listarHotelesPorFechaDestino(String fechaPartida, String fechaRegreso, String destino) {
         if(fechaPartida == null && fechaRegreso == null && destino == null){
             return hotelRepository.listaDeHoteles();
         }else if (fechaPartida == null || fechaRegreso == null || destino == null) {
@@ -78,7 +76,7 @@ public class HotelService {
 
         reserva.setEstado(new StatusCodeDto(200,"Funca"));
 
-        respuestaFinal.setHotelReservaResponseDto(reserva);
+        respuestaFinal.setHotelReservaResponse(reserva);
 
         return respuestaFinal;
 

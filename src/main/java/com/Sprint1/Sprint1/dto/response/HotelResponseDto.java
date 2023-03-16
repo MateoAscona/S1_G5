@@ -12,5 +12,5 @@ import lombok.Setter;
 public class HotelResponseDto {
     private String nombreUsuario;
     private Double total;
-    private HotelReservaResponseDto hotelReservaResponseDto;
+    private HotelReservaResponseDto hotelReservaResponse;
 }
