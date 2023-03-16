@@ -6,6 +6,7 @@ import com.Sprint1.Sprint1.exception.SinParametrosException;
 import com.Sprint1.Sprint1.exception.VueloNoEncontradoException;
 import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.repository.VuelosRepository;
+import com.Sprint1.Sprint1.utils.UtilMethods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,16 @@ public class VuelosService {
     @Autowired
     VuelosRepository vuelosRepository;
 
+    UtilMethods utilMethods = new UtilMethods();
+
     public List<VuelosObject> listarVuelos() {
         return vuelosRepository.listaDeVuelos();
     }
 
-    public List<VuelosObject> listarVuelosPorFechaDestino(String fechaPartida, String fechaRegreso, String destino)
+    public List<VuelosObject> listarVuelosPorFechaDestino(
+            LocalDate fechaPartida,
+            LocalDate fechaRegreso,
+            String destino)
             throws ParseException {
 
         if(fechaPartida == null && fechaRegreso == null && destino == null){
@@ -33,21 +39,19 @@ public class VuelosService {
             throw new SinParametrosException();
         }
 
+        utilMethods.existeDestinoDeVuelo(destino);
+
         List<VuelosObject> vuelosBuscados = new ArrayList<>();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDate fechaPartidaFormateada = LocalDate.parse(fechaPartida, formatter).plusDays(1);
-        LocalDate fechaRegresoFormateada = LocalDate.parse(fechaRegreso, formatter).minusDays(1);
-
         for (VuelosObject vuelos : vuelosRepository.listaDeVuelos()) {
-            if (fechaPartidaFormateada.isAfter(vuelos.getFechaIda()) &&
-                    fechaRegresoFormateada.isBefore(vuelos.getFechaVuelta()) &&
+            if (fechaPartida.plusDays(1).isAfter(vuelos.getFechaIda()) &&
+                    fechaRegreso.minusDays(1).isBefore(vuelos.getFechaVuelta()) &&
                     destino.equals(vuelos.getDestino())) {
                 vuelosBuscados.add(vuelos);
             }
         }
 
-        if(vuelosBuscados.size() == 0) {
+        if(vuelosBuscados.isEmpty()) {
             throw new VueloNoEncontradoException();
         }
 
@@ -58,6 +62,8 @@ public class VuelosService {
 
         VueloResponseDto respuestaFinal = new VueloResponseDto();
         Double precio = 0.0;
+
+        utilMethods.existeDestinoDeVuelo(vueloRequestDto.getVueloReserva().getDestino());
 
         respuestaFinal.setUserName(vueloRequestDto.getNombreUsuario());
 
