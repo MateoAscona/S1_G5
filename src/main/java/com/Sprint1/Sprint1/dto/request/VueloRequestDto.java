@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Data
 @Validated
+@Builder
 public class VueloRequestDto {
     @NotBlank
     @Size(min = 3, max = 15, message = "El nombre debe tener entre 3 y 15 caracteres")
