@@ -36,7 +36,6 @@ import java.util.List;
          var result = hotelRepository.listaDeHoteles();
          //assert
          Assertions.assertEquals(expected, result.size());
-
      }
 
 }
