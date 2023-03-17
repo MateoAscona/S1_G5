@@ -7,6 +7,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class VueloReservaResponseDto {
     private String fechaDesde;
     private String fechaHasta;

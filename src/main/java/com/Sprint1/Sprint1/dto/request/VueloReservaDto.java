@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class VueloReservaDto {
     @NotBlank(message = "Ingrese una fecha de partida")
     private String fechaDesde;

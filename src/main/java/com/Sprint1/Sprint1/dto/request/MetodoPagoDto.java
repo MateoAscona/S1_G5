@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class MetodoPagoDto {
     @NotBlank(message = "Ingrese el tipo de pago")
     private String tipo;
