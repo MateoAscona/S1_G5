@@ -5,6 +5,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class HotelResponseDto {
     private String nombreUsuario;
     private Double total;

@@ -9,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class HotelReservaResponseDto {
     private String fechaDesde;
     private String fechaHasta;

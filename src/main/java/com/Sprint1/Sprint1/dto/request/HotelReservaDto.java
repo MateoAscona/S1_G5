@@ -9,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class HotelReservaDto {
     @NotBlank(message = "Ingrese una fecha de ingreso")
     private String fechaDesde;
