@@ -24,7 +24,7 @@ public class VuelosController {
     UtilMethods utilMethods = new UtilMethods();
 
     @GetMapping("/api/v1/flights")
-    public List<VuelosObject> buscarHotelPorFecha(
+    public List<VuelosObject> buscarVueloPorFecha(
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaPartida,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaRegreso,
             @RequestParam(required = false) String destino) throws ParseException{

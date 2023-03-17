@@ -16,7 +16,7 @@ public class VueloRepositoryTest {
 
         //arrange
         List<VuelosObject> expected = new ArrayList<>();
-        VuelosObject vuelos = VueloFactory.listaDeVuelosTest();
+        VuelosObject vuelos = VueloFactory.getVuelo();
         expected.add(vuelos);
 
         //act

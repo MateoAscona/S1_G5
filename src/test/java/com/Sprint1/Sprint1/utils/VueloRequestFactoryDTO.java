@@ -1,30 +1,27 @@
 package com.Sprint1.Sprint1.utils;
 
-import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
-import com.Sprint1.Sprint1.dto.request.HotelReservaDto;
-import com.Sprint1.Sprint1.dto.request.MetodoPagoDto;
-import com.Sprint1.Sprint1.dto.request.PersonasDto;
+import com.Sprint1.Sprint1.dto.request.*;
 
 import java.util.List;
 
-public class HotelRequestFactoryDTO {
+public class VueloRequestFactoryDTO {
+    public static VueloRequestDto getVueloReserva() {
 
-public static HotelRequestDto getHotelReserva() {
+        return VueloRequestDto.builder()
+                .nombreUsuario("Cristian")
+                .vueloReserva(getReservaVueloDatos())
+                .build();
 
-    return HotelRequestDto.builder()
-            .nombreUsuario("Cristian")
-            .hotelReserva(getReservaHotelDatos())
-            .build();
-
-}
-    public static HotelReservaDto getReservaHotelDatos(){
-        return HotelReservaDto.builder()
+    }
+    public static VueloReservaDto getReservaVueloDatos(){
+        return VueloReservaDto.builder()
                 .fechaDesde("2022/02/10")
-                .fechaHasta("2022/03/20")
+                .fechaHasta("2022/02/15")
+                .origen("Buenos Aires")
                 .destino("Puerto Iguazú")
-                .codigoHotel("CH-0002")
-                .cantidadPersonas(1)
-                .tipoHabitacion("Single")
+                .codigoVuelo("BAPI-1235")
+                .cantidadAsientos(1)
+                .claseAsientos("Single")
                 .personas(List.of(getPersona()))
                 .metodoPago(getPagoDto())
                 .build();
@@ -51,5 +48,4 @@ public static HotelRequestDto getHotelReserva() {
 
 
     }
-
 }
