@@ -17,7 +17,7 @@ import java.util.List;
 
         //arrange
         List<HotelObject> expected = new ArrayList<>();
-        HotelObject hotels = HotelFactory.listaDeHotelesTest();
+        HotelObject hotels = HotelFactory.getHotel();
         expected.add(hotels);
 
         //act
@@ -38,5 +38,6 @@ import java.util.List;
          Assertions.assertEquals(expected, result.size());
 
      }
+
 
 }
