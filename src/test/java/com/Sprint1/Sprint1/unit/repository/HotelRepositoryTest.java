@@ -14,18 +14,14 @@ import java.util.List;
 
     @Test
     public void listaDeHotelesTest (){
-
         //arrange
         List<HotelObject> expected = new ArrayList<>();
         HotelObject hotels = HotelFactory.getHotel();
         expected.add(hotels);
-
         //act
-
         var result = hotelRepository.listaDeHoteles();
         //assert
         Assertions.assertEquals(expected, result);
-
     }
 
      @Test
@@ -36,8 +32,5 @@ import java.util.List;
          var result = hotelRepository.listaDeHoteles();
          //assert
          Assertions.assertEquals(expected, result.size());
-
      }
-
-
 }

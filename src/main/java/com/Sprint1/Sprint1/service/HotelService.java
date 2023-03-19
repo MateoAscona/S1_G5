@@ -36,7 +36,9 @@ public class HotelService {
 
         List<HotelObject> hotelesBuscados = new ArrayList<>();
 
-        for (HotelObject hotel : hotelRepository.listaDeHoteles()) {
+        var hoteles = hotelRepository.listaDeHoteles();
+
+        for (HotelObject hotel : hoteles) {
             if (fechaPartida.plusDays(1).isAfter(hotel.getDisponibleDesde())
                     && fechaRegreso.minusDays(1).isBefore(hotel.getDisponibleHasta())
                     && destino.equals(hotel.getLugarCiudad())) {

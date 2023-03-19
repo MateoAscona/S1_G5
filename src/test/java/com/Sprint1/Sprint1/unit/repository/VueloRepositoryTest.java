@@ -16,7 +16,7 @@ public class VueloRepositoryTest {
 
         //arrange
         List<VuelosObject> expected = new ArrayList<>();
-        VuelosObject vuelos = VueloFactory.listaDeVuelosTest();
+        VuelosObject vuelos = VueloFactory.getVuelo();
         expected.add(vuelos);
 
         //act
@@ -24,11 +24,9 @@ public class VueloRepositoryTest {
         var result = vuelosRepository.listaDeVuelos();
         //assert
         Assertions.assertEquals(expected, result);
-
     }
 
     @Test
-
     public void listaDeVuelosContarTest(){
         //arrange
         Integer expected = 1;
@@ -36,7 +34,5 @@ public class VueloRepositoryTest {
         var result = vuelosRepository.listaDeVuelos();
         //assert
         Assertions.assertEquals(expected, result.size());
-
     }
-
 }
