@@ -39,8 +39,6 @@ public class HotelController {
         } else {
             return hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
         }
-
-
     }
 
     @PostMapping("/api/v1/booking")

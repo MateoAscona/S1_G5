@@ -1,5 +1,6 @@
 package com.Sprint1.Sprint1.integration;
 
+import com.Sprint1.Sprint1.dto.ExceptionDto;
 import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.model.HotelObject;
@@ -138,10 +139,12 @@ public class HotelControllerIntegrationTest {
         // Arrange
         HotelRequestDto requestDto = HotelRequestFactoryDTO.getHotelReserva();
         requestDto.getHotelReserva().setDestino("Rafaela");
+
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage("No se encontró ningún hotel.");
         // Param necesario
 
         // La devolucion
-        HotelResponseDto response = HotelResponseFactoryDTO.getHotelResponse();
 
         // Request
         MockHttpServletRequestBuilder request =
@@ -153,13 +156,18 @@ public class HotelControllerIntegrationTest {
 
         // ResultMatchers
 
+        ResultMatcher bodyExpected = MockMvcResultMatchers.content().json(writer.writeValueAsString(exceptionDto));
         ResultMatcher statusExpected = MockMvcResultMatchers.status().isBadRequest();
+        ResultMatcher contentTypeExpected = MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON);
+
 
         // Act & Assert con mockmvc
 
         mockMvc.perform(request)
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(statusExpected);
+                .andExpect(statusExpected)
+                .andExpect(bodyExpected)
+                .andExpect(contentTypeExpected);
     }
 
 }

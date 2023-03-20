@@ -1,10 +1,7 @@
 package com.Sprint1.Sprint1.integration;
 
-import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
 import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
-import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
-import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
