@@ -1,11 +1,12 @@
 package com.Sprint1.Sprint1.integration;
 
 import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
+import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
+import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
 import com.Sprint1.Sprint1.model.HotelObject;
-import com.Sprint1.Sprint1.utils.HotelFactory;
-import com.Sprint1.Sprint1.utils.HotelRequestFactoryDTO;
-import com.Sprint1.Sprint1.utils.HotelResponseFactoryDTO;
+import com.Sprint1.Sprint1.model.VuelosObject;
+import com.Sprint1.Sprint1.utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -39,28 +40,28 @@ public class VuelosControllerIntegrationTest {
                 .writer();
     }
     @Test
-    public void buscarHotelTest() throws Exception {
+    public void buscarVuelosTest() throws Exception {
 
         // Arrange
         String fechaPartida = "2022/02/10";
-        String fechaRegreso = "2022/03/20";
+        String fechaRegreso = "2022/02/15";
         String destino = "Puerto Iguazú";
 
         // Param necesario
 
         // La devolucion
-        List<HotelObject> hotel = List.of(HotelFactory.getHotel());
+        List<VuelosObject> vuelo = List.of(VueloFactory.getVuelo());
 
         // Request
         MockHttpServletRequestBuilder request =
-                MockMvcRequestBuilders.get("/api/v1/hotels")
+                MockMvcRequestBuilders.get("/api/v1/flights")
                         .param("fechaPartida", fechaPartida)
                         .param("fechaRegreso", fechaRegreso)
                         .param("destino", destino);
 
         // ResultMatchers
 
-        ResultMatcher bodyExpected = MockMvcResultMatchers.content().json(writer.writeValueAsString(hotel));
+        ResultMatcher bodyExpected = MockMvcResultMatchers.content().json(writer.writeValueAsString(vuelo));
         ResultMatcher statusExpected = MockMvcResultMatchers.status().isOk();
         ResultMatcher contentTypeExpected = MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON);
 
@@ -74,16 +75,16 @@ public class VuelosControllerIntegrationTest {
     }
 
     @Test
-    public void buscarHotelExceptionTest() throws Exception {
+    public void buscarVueloExceptionTest() throws Exception {
 
         // Arrange
         String fechaPartida = "2022/02/10";
-        String fechaRegreso = "2022/03/20";
+        String fechaRegreso = "2022/02/15";
         String destino = "Rafaela";
 
         // Request
         MockHttpServletRequestBuilder request =
-                MockMvcRequestBuilders.get("/api/v1/hotels")
+                MockMvcRequestBuilders.get("/api/v1/flights")
                         .param("fechaPartida", fechaPartida)
                         .param("fechaRegreso", fechaRegreso)
                         .param("destino", destino);
@@ -99,18 +100,18 @@ public class VuelosControllerIntegrationTest {
     }
 
     @Test
-    public void reservarHotelTest() throws Exception {
+    public void reservarVueloTest() throws Exception {
 
         // Arrange
-        HotelRequestDto requestDto = HotelRequestFactoryDTO.getHotelReserva();
+        VueloRequestDto requestDto = VueloRequestFactoryDTO.getVueloReserva();
         // Param necesario
 
         // La devolucion
-        HotelResponseDto response = HotelResponseFactoryDTO.getHotelResponse();
+        VueloResponseDto response = VueloResponseFactoryDTO.getVueloResponse();
 
         // Request
         MockHttpServletRequestBuilder request =
-                MockMvcRequestBuilders.post("/api/v1/booking")
+                MockMvcRequestBuilders.post("/api/v1/flight-reservation")
                         .content(
                                 writer.writeValueAsString(requestDto)
                         )
@@ -132,19 +133,18 @@ public class VuelosControllerIntegrationTest {
     }
 
     @Test
-    public void reservarHotelExceptionTest() throws Exception {
+    public void reservarVuelosExceptionTest() throws Exception {
 
         // Arrange
-        HotelRequestDto requestDto = HotelRequestFactoryDTO.getHotelReserva();
-        requestDto.getHotelReserva().setDestino("Rafaela");
+       VueloRequestDto requestDto = VueloRequestFactoryDTO.getVueloReserva();
+        requestDto.getVueloReserva().setDestino("Rafaela");
         // Param necesario
 
         // La devolucion
-        HotelResponseDto response = HotelResponseFactoryDTO.getHotelResponse();
 
         // Request
         MockHttpServletRequestBuilder request =
-                MockMvcRequestBuilders.post("/api/v1/booking")
+                MockMvcRequestBuilders.post("/api/v1/flight-reservation")
                         .content(
                                 writer.writeValueAsString(requestDto)
                         )
