@@ -28,25 +28,31 @@ public class HotelController {
     public List<HotelObject> buscarHotelPorFecha(
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaPartida,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaRegreso,
-            @RequestParam(required = false) String destino){
+            @RequestParam(required = false) String destino) {
 
-        if(utilMethods.comparacionFechas(fechaPartida, fechaRegreso)){
-        return hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
-        }else{
-            throw new FechasEquivocasException();
+        if (fechaPartida != null && fechaRegreso != null) {
+            if (utilMethods.comparacionFechas(fechaPartida, fechaRegreso)) {
+                return hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
+            } else {
+                throw new FechasEquivocasException();
+            }
+        } else {
+            return hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
         }
+
+
     }
 
     @PostMapping("/api/v1/booking")
-    public HotelResponseDto reservaHotel(@RequestBody @Valid HotelRequestDto hotelRequestDto){
+    public HotelResponseDto reservaHotel(@RequestBody @Valid HotelRequestDto hotelRequestDto) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate fechaPartidaFormateada = LocalDate.parse(hotelRequestDto.getHotelReserva().getFechaDesde(), formatter);
         LocalDate fechaRegresoFormateada = LocalDate.parse(hotelRequestDto.getHotelReserva().getFechaHasta(), formatter);
 
-        if(utilMethods.comparacionFechas(fechaPartidaFormateada, fechaRegresoFormateada)){
+        if (utilMethods.comparacionFechas(fechaPartidaFormateada, fechaRegresoFormateada)) {
             return hotelService.hotelReservaImpl(hotelRequestDto);
-        }else{
+        } else {
             throw new FechasEquivocasException();
         }
     }
