@@ -83,6 +83,9 @@ public class HotelControllerIntegrationTest {
         String fechaRegreso = "2022/03/20";
         String destino = "Rafaela";
 
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage("No se encontró ningún hotel.");
+
         // Request
         MockHttpServletRequestBuilder request =
                 MockMvcRequestBuilders.get("/api/v1/hotels")
@@ -91,7 +94,9 @@ public class HotelControllerIntegrationTest {
                         .param("destino", destino);
 
         // ResultMatchers
+        ResultMatcher bodyExpected = MockMvcResultMatchers.content().json(writer.writeValueAsString(exceptionDto));
         ResultMatcher statusExpected = MockMvcResultMatchers.status().isBadRequest();
+        ResultMatcher contentTypeExpected = MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON);
 
         // Act & Assert con mockmvc
 

@@ -1,5 +1,6 @@
 package com.Sprint1.Sprint1.integration;
 
+import com.Sprint1.Sprint1.dto.ExceptionDto;
 import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
 import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
 import com.Sprint1.Sprint1.model.VuelosObject;
@@ -79,6 +80,9 @@ public class VuelosControllerIntegrationTest {
         String fechaRegreso = "2022/02/15";
         String destino = "Rafaela";
 
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage("No se encontró ningún vuelo.");
+
         // Request
         MockHttpServletRequestBuilder request =
                 MockMvcRequestBuilders.get("/api/v1/flights")
@@ -87,13 +91,17 @@ public class VuelosControllerIntegrationTest {
                         .param("destino", destino);
 
         // ResultMatchers
+        ResultMatcher bodyExpected = MockMvcResultMatchers.content().json(writer.writeValueAsString(exceptionDto));
         ResultMatcher statusExpected = MockMvcResultMatchers.status().isBadRequest();
+        ResultMatcher contentTypeExpected = MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON);
 
         // Act & Assert con mockmvc
 
         mockMvc.perform(request)
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(statusExpected);
+                .andExpect(bodyExpected)
+                .andExpect(statusExpected)
+                .andExpect(contentTypeExpected);
     }
 
     @Test
@@ -101,7 +109,6 @@ public class VuelosControllerIntegrationTest {
 
         // Arrange
         VueloRequestDto requestDto = VueloRequestFactoryDTO.getVueloReserva();
-        // Param necesario
 
         // La devolucion
         VueloResponseDto response = VueloResponseFactoryDTO.getVueloResponse();
@@ -115,7 +122,6 @@ public class VuelosControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON);
 
         // ResultMatchers
-
         ResultMatcher bodyExpected = MockMvcResultMatchers.content().json(writer.writeValueAsString(response));
         ResultMatcher statusExpected = MockMvcResultMatchers.status().isOk();
         ResultMatcher contentTypeExpected = MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON);
@@ -135,7 +141,9 @@ public class VuelosControllerIntegrationTest {
         // Arrange
        VueloRequestDto requestDto = VueloRequestFactoryDTO.getVueloReserva();
         requestDto.getVueloReserva().setDestino("Rafaela");
-        // Param necesario
+
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage("No se encontró ningún vuelo.");
 
         // La devolucion
 
@@ -149,12 +157,17 @@ public class VuelosControllerIntegrationTest {
 
         // ResultMatchers
 
+        ResultMatcher bodyExpected = MockMvcResultMatchers.content().json(writer.writeValueAsString(exceptionDto));
         ResultMatcher statusExpected = MockMvcResultMatchers.status().isBadRequest();
+        ResultMatcher contentTypeExpected = MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON);
+
 
         // Act & Assert con mockmvc
 
         mockMvc.perform(request)
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(statusExpected);
+                .andExpect(bodyExpected)
+                .andExpect(statusExpected)
+                .andExpect(contentTypeExpected);
     }
 }

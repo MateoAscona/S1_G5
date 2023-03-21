@@ -30,14 +30,12 @@ public class HotelController {
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaRegreso,
             @RequestParam(required = false) String destino) {
 
-        if (fechaPartida != null && fechaRegreso != null) {
-            if (utilMethods.comparacionFechas(fechaPartida, fechaRegreso)) {
-                return hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
-            } else {
-                throw new FechasEquivocasException();
-            }
-        } else {
+        if (fechaPartida == null && fechaRegreso == null) {
             return hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
+        } else if (fechaPartida != null && fechaRegreso != null && fechaPartida.isBefore(fechaRegreso)) {
+            return hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
+        } else {
+            throw new FechasEquivocasException();
         }
     }
 
