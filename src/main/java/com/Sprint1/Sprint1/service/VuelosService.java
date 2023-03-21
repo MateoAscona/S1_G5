@@ -74,18 +74,18 @@ public class VuelosService {
         }
         respuestaFinal.setTotal(vueloRequestDto.getVueloReserva().getCantidadAsientos() * precio);
 
-        VueloReservaResponseDto reserva = new VueloReservaResponseDto();
+        VueloReservaResponseDto reserva = new VueloReservaResponseDto(
 
-        reserva.setFechaDesde(vueloRequestDto.getVueloReserva().getFechaDesde());
-        reserva.setFechaHasta(vueloRequestDto.getVueloReserva().getFechaHasta());
-        reserva.setOrigen(vueloRequestDto.getVueloReserva().getOrigen());
-        reserva.setDestino(vueloRequestDto.getVueloReserva().getDestino());
-        reserva.setCodigoVuelo(vueloRequestDto.getVueloReserva().getCodigoVuelo());
-        reserva.setCantidadAsientos(vueloRequestDto.getVueloReserva().getCantidadAsientos());
-        reserva.setClaseAsiento(vueloRequestDto.getVueloReserva().getClaseAsientos());
-        reserva.setPersonas(vueloRequestDto.getVueloReserva().getPersonas());
-
-        reserva.setEstado(new StatusCodeDto(200,"Funca"));
+                vueloRequestDto.getVueloReserva().getFechaDesde(),
+                vueloRequestDto.getVueloReserva().getFechaHasta(),
+                vueloRequestDto.getVueloReserva().getOrigen(),
+                vueloRequestDto.getVueloReserva().getDestino(),
+                vueloRequestDto.getVueloReserva().getCodigoVuelo(),
+                vueloRequestDto.getVueloReserva().getCantidadAsientos(),
+                vueloRequestDto.getVueloReserva().getClaseAsientos(),
+                vueloRequestDto.getVueloReserva().getPersonas(),
+                new StatusCodeDto(200, "Funciona correctamente")
+                );
 
         respuestaFinal.setVueloReservaResponseDto(reserva);
 

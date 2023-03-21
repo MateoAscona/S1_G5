@@ -8,7 +8,6 @@ import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.repository.HotelRepository;
 import com.Sprint1.Sprint1.repository.VuelosRepository;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.time.LocalDate;
