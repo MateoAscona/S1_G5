@@ -18,6 +18,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
@@ -53,6 +54,7 @@ public class HotelServiceTest {
         LocalDate fechaPartida = LocalDate.parse("2022-02-10");
         LocalDate fechaRegreso = LocalDate.parse("2022-03-20");
         String destino = "Rafaela";
+
 
 
         // act  and acert
