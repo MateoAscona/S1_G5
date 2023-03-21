@@ -32,7 +32,7 @@ public class HotelResponseFactoryDTO {
                 .personas(List.of(getPersona()))
                 .estado(StatusCodeDto.builder()
                         .code(200)
-                        .mensaje("Funca")
+                        .mensaje("Funciona correctamente")
                         .build())
                 .build();
 

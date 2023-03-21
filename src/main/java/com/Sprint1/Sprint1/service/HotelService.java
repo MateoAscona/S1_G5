@@ -1,6 +1,7 @@
 package com.Sprint1.Sprint1.service;
 
 import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
+import com.Sprint1.Sprint1.dto.request.HotelReservaDto;
 import com.Sprint1.Sprint1.dto.response.HotelReservaResponseDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.dto.response.StatusCodeDto;
@@ -74,17 +75,17 @@ public class HotelService {
         }
     respuestaFinal.setTotal(hotelRequestDto.getHotelReserva().getCantidadPersonas() * precio);
 
-        HotelReservaResponseDto reserva = new HotelReservaResponseDto();
-
-        reserva.setFechaDesde(hotelRequestDto.getHotelReserva().getFechaDesde());
-        reserva.setFechaHasta(hotelRequestDto.getHotelReserva().getFechaHasta());
-        reserva.setDestino(hotelRequestDto.getHotelReserva().getDestino());
-        reserva.setCodigoHotel(hotelRequestDto.getHotelReserva().getCodigoHotel());
-        reserva.setCantidadPersonas(hotelRequestDto.getHotelReserva().getCantidadPersonas());
-        reserva.setTipoHabitacion(hotelRequestDto.getHotelReserva().getTipoHabitacion());
-        reserva.setPersonas(hotelRequestDto.getHotelReserva().getPersonas());
-
-        reserva.setEstado(new StatusCodeDto(200,"Funca"));
+        //usar un constructor para crear el objeto y establecer las propiedades en una sola línea de código
+        HotelReservaResponseDto reserva = new HotelReservaResponseDto(
+                hotelRequestDto.getHotelReserva().getFechaDesde(),
+                hotelRequestDto.getHotelReserva().getFechaHasta(),
+                hotelRequestDto.getHotelReserva().getDestino(),
+                hotelRequestDto.getHotelReserva().getCodigoHotel(),
+                hotelRequestDto.getHotelReserva().getCantidadPersonas(),
+                hotelRequestDto.getHotelReserva().getTipoHabitacion(),
+                hotelRequestDto.getHotelReserva().getPersonas(),
+                new StatusCodeDto(200, "Funciona correctamente")
+        );
 
         respuestaFinal.setHotelReservaResponse(reserva);
 
