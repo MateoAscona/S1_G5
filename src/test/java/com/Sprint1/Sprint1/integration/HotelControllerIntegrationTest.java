@@ -102,7 +102,9 @@ public class HotelControllerIntegrationTest {
 
         mockMvc.perform(request)
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(statusExpected);
+                .andExpect(statusExpected)
+                .andExpect(bodyExpected)
+                .andExpect(contentTypeExpected);
     }
 
     @Test

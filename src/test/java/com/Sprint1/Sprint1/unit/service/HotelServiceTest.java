@@ -35,6 +35,7 @@ public class HotelServiceTest {
     public void listarHotelesPorFechaDestinoTest () {
         // arrange
         List<HotelObject> expected = List.of(HotelFactory.getHotel());
+
         LocalDate fechaPartida = LocalDate.parse("2022-02-10");
         LocalDate fechaRegreso = LocalDate.parse("2022-03-20");
         String destino = "Puerto Iguazú";

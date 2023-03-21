@@ -10,7 +10,6 @@ import com.Sprint1.Sprint1.repository.VuelosRepository;
 import lombok.Data;
 
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +19,6 @@ public class UtilMethods {
 
     HotelRepository hotelRepository = new HotelRepository();
     VuelosRepository vuelosRepository = new VuelosRepository();
-    public boolean comparacionFechas(LocalDate fechaPartida, LocalDate fechaRegreso){
-        return fechaPartida.isBefore(fechaRegreso);
-    }
 
     public void existeDestino(String destino){
         List<HotelObject> acumulador = new ArrayList<>();

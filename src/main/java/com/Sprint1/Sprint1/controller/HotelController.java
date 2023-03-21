@@ -5,7 +5,6 @@ import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.exception.FechasEquivocasException;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.service.HotelService;
-import com.Sprint1.Sprint1.utils.UtilMethods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +19,6 @@ public class HotelController {
 
     @Autowired
     HotelService hotelService;
-
-    UtilMethods utilMethods = new UtilMethods();
 
     @GetMapping("/api/v1/hotels")
 
@@ -46,7 +43,7 @@ public class HotelController {
         LocalDate fechaPartidaFormateada = LocalDate.parse(hotelRequestDto.getHotelReserva().getFechaDesde(), formatter);
         LocalDate fechaRegresoFormateada = LocalDate.parse(hotelRequestDto.getHotelReserva().getFechaHasta(), formatter);
 
-        if (utilMethods.comparacionFechas(fechaPartidaFormateada, fechaRegresoFormateada)) {
+        if (fechaPartidaFormateada.isBefore(fechaRegresoFormateada)) {
             return hotelService.hotelReservaImpl(hotelRequestDto);
         } else {
             throw new FechasEquivocasException();
