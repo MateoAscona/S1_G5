@@ -18,6 +18,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,11 +31,11 @@ public class HotelServiceTest {
     @InjectMocks
     HotelService hotelService;
 
+
     @Test
     public void listarHotelesPorFechaDestinoTest () {
         // arrange
         List<HotelObject> expected = List.of(HotelFactory.getHotel());
-
         LocalDate fechaPartida = LocalDate.parse("2022-02-10");
         LocalDate fechaRegreso = LocalDate.parse("2022-03-20");
         String destino = "Puerto Iguazú";
@@ -50,11 +51,10 @@ public class HotelServiceTest {
     public void listarHotelesPorFechaDestinoExceptionTest () {
         // arrange
         List<HotelObject> expected = List.of(HotelFactory.getHotel());
-        LocalDate fechaPartida = LocalDate.parse("2023-02-10");
-        LocalDate fechaRegreso = LocalDate.parse("2025-03-20");
-        String destino = "Puerto Iguazú";
+        LocalDate fechaPartida = LocalDate.parse("2022-02-10");
+        LocalDate fechaRegreso = LocalDate.parse("2022-03-20");
+        String destino = "Rafaela";
 
-        Mockito.when(hotelRepository.listaDeHoteles()).thenReturn(expected);
 
         // act  and acert
         Assertions.assertThrows(HotelNoEncontradoException.class,
@@ -62,12 +62,13 @@ public class HotelServiceTest {
     }
 
     @Test
+
     public void hotelReservaImplTest(){
         //arrange
         HotelResponseDto expected = HotelResponseFactoryDTO.getHotelResponse();
         HotelRequestDto hotel = HotelRequestFactoryDTO.getHotelReserva();
         //act
-        Mockito.when(hotelRepository.getHotelesCargados()).thenReturn(List.of(HotelFactory.getHotel()));
+        Mockito.when( hotelRepository.getHotelesCargados()).thenReturn(List.of(HotelFactory.getHotel()));
         var result = hotelService.hotelReservaImpl(hotel);
 
         //assert
@@ -75,6 +76,7 @@ public class HotelServiceTest {
     }
 
     @Test
+
     public void hotelReservaImplExceptionTest(){
         //arrange
         HotelRequestDto hotel = HotelRequestFactoryDTO.getHotelReserva();
