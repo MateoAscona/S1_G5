@@ -24,14 +24,17 @@ public class VuelosController {
     UtilMethods utilMethods = new UtilMethods();
 
     @GetMapping("/api/v1/flights")
-    public List<VuelosObject> buscarHotelPorFecha(
+    public List<VuelosObject> buscarVueloPorFecha(
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaPartida,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaRegreso,
             @RequestParam(required = false) String destino) throws ParseException{
+        if (fechaPartida != null && fechaRegreso != null){
         if(utilMethods.comparacionFechas(fechaPartida, fechaRegreso)){
             return vuelosService.listarVuelosPorFechaDestino(fechaPartida, fechaRegreso, destino);
         }else{
             throw new FechasEquivocasException();
+        }}else{
+            return vuelosService.listarVuelosPorFechaDestino(fechaPartida, fechaRegreso, destino);
         }
     }
 

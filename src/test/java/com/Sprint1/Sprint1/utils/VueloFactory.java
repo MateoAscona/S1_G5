@@ -5,7 +5,7 @@ import com.Sprint1.Sprint1.model.VuelosObject;
 import java.time.LocalDate;
 
 public class VueloFactory {
-    public static VuelosObject listaDeVuelosTest() {
+    public static VuelosObject getVuelo() {
 
         return VuelosObject.builder()
                 .nroVuelo("BAPI-1235")
