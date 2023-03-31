@@ -1,6 +1,6 @@
 package com.Sprint1.Sprint1.unit.service;
 
-import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
+import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
 import com.Sprint1.Sprint1.model.HotelObject;
@@ -18,7 +18,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
@@ -67,7 +66,7 @@ public class HotelServiceTest {
     public void hotelReservaImplTest(){
         //arrange
         HotelResponseDto expected = HotelResponseFactoryDTO.getHotelResponse();
-        HotelRequestDto hotel = HotelRequestFactoryDTO.getHotelReserva();
+        HotelReservaRequestDto hotel = HotelRequestFactoryDTO.getHotelReserva();
         //act
         Mockito.when( hotelRepository.getHotelesCargados()).thenReturn(List.of(HotelFactory.getHotel()));
         var result = hotelService.hotelReservaImpl(hotel);
@@ -80,8 +79,8 @@ public class HotelServiceTest {
 
     public void hotelReservaImplExceptionTest(){
         //arrange
-        HotelRequestDto hotel = HotelRequestFactoryDTO.getHotelReserva();
-        hotel.getHotelReserva().setDestino("Rafaela");
+        HotelReservaRequestDto hotel = HotelRequestFactoryDTO.getHotelReserva();
+        hotel.getHotelReservationData().setDestino("Rafaela");
 
         //act and assert
         Assertions.assertThrows(HotelNoEncontradoException.class,

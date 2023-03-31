@@ -1,7 +1,7 @@
 package com.Sprint1.Sprint1.integration;
 
 import com.Sprint1.Sprint1.dto.ExceptionDto;
-import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
+import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.utils.HotelFactory;
@@ -111,7 +111,7 @@ public class HotelControllerIntegrationTest {
     public void reservarHotelTest() throws Exception {
 
         // Arrange
-        HotelRequestDto requestDto = HotelRequestFactoryDTO.getHotelReserva();
+        HotelReservaRequestDto requestDto = HotelRequestFactoryDTO.getHotelReserva();
         // Param necesario
 
         // La devolucion
@@ -144,8 +144,8 @@ public class HotelControllerIntegrationTest {
     public void reservarHotelExceptionTest() throws Exception {
 
         // Arrange
-        HotelRequestDto requestDto = HotelRequestFactoryDTO.getHotelReserva();
-        requestDto.getHotelReserva().setDestino("Rafaela");
+        HotelReservaRequestDto requestDto = HotelRequestFactoryDTO.getHotelReserva();
+        requestDto.getHotelReservationData().setDestino("Rafaela");
 
         ExceptionDto exceptionDto = new ExceptionDto();
         exceptionDto.setMessage("No se encontró ningún hotel.");

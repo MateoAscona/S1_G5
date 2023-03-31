@@ -1,7 +1,7 @@
 package com.Sprint1.Sprint1.utils;
 
-import com.Sprint1.Sprint1.dto.request.HotelRequestDto;
-import com.Sprint1.Sprint1.dto.request.HotelReservaDto;
+import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
+import com.Sprint1.Sprint1.dto.request.HotelReservationData;
 import com.Sprint1.Sprint1.dto.request.MetodoPagoDto;
 import com.Sprint1.Sprint1.dto.request.PersonasDto;
 
@@ -9,16 +9,16 @@ import java.util.List;
 
 public class HotelRequestFactoryDTO {
 
-public static HotelRequestDto getHotelReserva() {
+public static HotelReservaRequestDto getHotelReserva() {
 
-    return HotelRequestDto.builder()
+    return HotelReservaRequestDto.builder()
             .nombreUsuario("Cristian")
-            .hotelReserva(getReservaHotelDatos())
+            .hotelReservationData(getReservaHotelDatos())
             .build();
 
 }
-    public static HotelReservaDto getReservaHotelDatos(){
-        return HotelReservaDto.builder()
+    public static HotelReservationData getReservaHotelDatos(){
+        return HotelReservationData.builder()
                 .fechaDesde("2022/02/10")
                 .fechaHasta("2022/03/20")
                 .destino("Puerto Iguazú")

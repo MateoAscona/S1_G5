@@ -16,7 +16,7 @@ public class HotelResponseFactoryDTO {
         return HotelResponseDto.builder()
                 .nombreUsuario("Cristian")
                 .total(6300.0)
-                .hotelReservaResponse(getReservaResponse())
+                .hotelReservationData(getReservaResponse())
                 .build();
 
     }
