@@ -21,33 +21,31 @@ public class VuelosController {
     @Autowired
     VuelosService vuelosService;
 
-    UtilMethods utilMethods = new UtilMethods();
 
     @GetMapping("/api/v1/flights")
     public List<VuelosObject> buscarVueloPorFecha(
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaPartida,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaRegreso,
-            @RequestParam(required = false) String destino) throws ParseException{
-        if (fechaPartida != null && fechaRegreso != null){
-        if(utilMethods.comparacionFechas(fechaPartida, fechaRegreso)){
+            @RequestParam(required = false) String destino) throws ParseException {
+        if (fechaPartida == null && fechaRegreso == null) {
             return vuelosService.listarVuelosPorFechaDestino(fechaPartida, fechaRegreso, destino);
-        }else{
+        } else if (fechaPartida != null && fechaRegreso != null && fechaPartida.isBefore(fechaRegreso)) {
+            return vuelosService.listarVuelosPorFechaDestino(fechaPartida, fechaRegreso, destino);
+        } else {
             throw new FechasEquivocasException();
-        }}else{
-            return vuelosService.listarVuelosPorFechaDestino(fechaPartida, fechaRegreso, destino);
         }
     }
 
     @PostMapping("/api/v1/flight-reservation")
-    public VueloResponseDto reservarVuelo(@RequestBody @Valid VueloRequestDto vueloRequestDto){
+    public VueloResponseDto reservarVuelo(@RequestBody @Valid VueloRequestDto vueloRequestDto) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate fechaPartidaFormateada = LocalDate.parse(vueloRequestDto.getVueloReserva().getFechaDesde(), formatter);
         LocalDate fechaRegresoFormateada = LocalDate.parse(vueloRequestDto.getVueloReserva().getFechaHasta(), formatter);
 
-        if(utilMethods.comparacionFechas(fechaPartidaFormateada, fechaRegresoFormateada)){
+        if (fechaPartidaFormateada.isBefore(fechaRegresoFormateada)) {
             return vuelosService.reservarVueloImpl(vueloRequestDto);
-        }else{
+        } else {
             throw new FechasEquivocasException();
         }
     }

@@ -67,8 +67,8 @@ Link para la reserva de hotel: http://localhost:8080/api/v1/booking
 
 Link para todos los vuelos: http://localhost:8080/api/v1/flights
 
-Links para testear filtro: http://localhost:8080/api/v1/flights?fechaPartida=2022/02/10&fechaRegreso=2022/02/21&destino=Bogotá
-                           http://localhost:8080/api/v1/hotels?fechaPartida=2022/02/10&fechaRegreso=2022/03/23&destino=Puerto Iguazú
+Links para testear filtro: http://localhost:8080/api/v1/flights?fechaPartida=2022/02/10&fechaRegreso=2022/02/15&destino=Bogotá
+                           http://localhost:8080/api/v1/hotels?fechaPartida=2022/02/10&fechaRegreso=2022/03/20&destino=Puerto Iguazú
 
 Link para la reserva del vuelo: http://localhost:8080/api/v1/flight-reservation
 (metodo POST objeto de ejemplo)

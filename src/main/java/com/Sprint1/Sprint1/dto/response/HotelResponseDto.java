@@ -1,5 +1,6 @@
 package com.Sprint1.Sprint1.dto.response;
 
+import com.Sprint1.Sprint1.model.HotelReservationData;
 import lombok.*;
 
 @AllArgsConstructor
@@ -7,7 +8,8 @@ import lombok.*;
 @Data
 @Builder
 public class HotelResponseDto {
+    private Integer id;
     private String nombreUsuario;
     private Double total;
-    private HotelReservaResponseDto hotelReservaResponse;
+    private HotelReservationData hotelReservationData;
 }
