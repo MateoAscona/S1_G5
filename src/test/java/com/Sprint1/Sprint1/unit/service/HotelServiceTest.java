@@ -5,6 +5,7 @@ import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.repository.HotelRepository;
+import com.Sprint1.Sprint1.repository.IHotelRepository;
 import com.Sprint1.Sprint1.service.HotelService;
 import com.Sprint1.Sprint1.utils.HotelFactory;
 import com.Sprint1.Sprint1.utils.HotelRequestFactoryDTO;
@@ -25,7 +26,7 @@ public class HotelServiceTest {
 
 
     @Mock
-    HotelRepository hotelRepository;
+    IHotelRepository hotelRepository;
 
     @InjectMocks
     HotelService hotelService;
