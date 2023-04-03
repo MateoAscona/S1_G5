@@ -29,7 +29,7 @@ public class VueloReservationData {
     @Max(value = 3, message = "No puede comprar mas de 3 asientos a la vez")
     private Integer cantidadAsientos;
     @NotBlank(message = "Especifique el tipo de asientos")
-    private String claseAsientos;
+    private String claseAsiento;
     @Valid
     private List<PersonasDto> personas;
     @Valid

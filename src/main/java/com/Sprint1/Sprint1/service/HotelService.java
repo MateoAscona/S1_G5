@@ -96,7 +96,7 @@ public class HotelService {
 
         HotelReservationData reserva = mapper.map(hotelReservaRequestDto.getHotelReservationData(), HotelReservationData.class);
 
-        reserva.setEstado(new StatusCodeObject());
+        reserva.setEstado(StatusCodeObject.builder().code(200).mensaje("Ok").build());
 
         reservaAGuardar.setHotelReservationData(reserva);
 

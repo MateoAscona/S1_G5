@@ -4,11 +4,14 @@ import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
 import com.Sprint1.Sprint1.model.HotelObject;
+import com.Sprint1.Sprint1.model.HotelReservation;
 import com.Sprint1.Sprint1.repository.HotelRepository;
 import com.Sprint1.Sprint1.repository.IHotelRepository;
+import com.Sprint1.Sprint1.repository.IHotelReservationRepository;
 import com.Sprint1.Sprint1.service.HotelService;
 import com.Sprint1.Sprint1.utils.HotelFactory;
 import com.Sprint1.Sprint1.utils.HotelRequestFactoryDTO;
+import com.Sprint1.Sprint1.utils.HotelReservationFactory;
 import com.Sprint1.Sprint1.utils.HotelResponseFactoryDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,6 +31,9 @@ public class HotelServiceTest {
     @Mock
     IHotelRepository hotelRepository;
 
+    @Mock
+    IHotelReservationRepository hotelReservationRepository;
+
     @InjectMocks
     HotelService hotelService;
 
@@ -42,7 +48,8 @@ public class HotelServiceTest {
         String destino = "Puerto Iguazú";
 
         // art
-        Mockito.when(hotelRepository.listaDeHoteles()).thenReturn(expected);
+        Mockito.when(hotelRepository.findByFechasYDestino(fechaPartida, fechaRegreso, destino))
+                .thenReturn(expected);
         var result = hotelService.listarHotelesPorFechaDestino(fechaPartida, fechaRegreso, destino);
 
         // acert
@@ -66,18 +73,19 @@ public class HotelServiceTest {
 
     public void hotelReservaImplTest(){
         //arrange
-        HotelResponseDto expected = HotelResponseFactoryDTO.getHotelResponse();
+        HotelResponseDto expected = HotelResponseFactoryDTO.getHotelResponseFinal();
         HotelReservaRequestDto hotel = HotelRequestFactoryDTO.getHotelReserva();
-        //act
-        Mockito.when( hotelRepository.getHotelesCargados()).thenReturn(List.of(HotelFactory.getHotel()));
-        var result = hotelService.hotelReservaImpl(hotel);
+        HotelReservation reserva = HotelReservationFactory.getHotelReservation();
 
+        //act
+        Mockito.when(hotelRepository.findAll()).thenReturn(List.of(HotelFactory.getHotel()));
+        Mockito.when(hotelReservationRepository.save(reserva)).thenReturn(reserva);
+        var result = hotelService.hotelReservaImpl(hotel);
         //assert
         Assertions.assertEquals(expected, result);
     }
 
     @Test
-
     public void hotelReservaImplExceptionTest(){
         //arrange
         HotelReservaRequestDto hotel = HotelRequestFactoryDTO.getHotelReserva();

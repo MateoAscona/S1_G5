@@ -2,7 +2,7 @@ INSERT INTO hoteles
   (codigo_hotel, nombre, lugar_ciudad, tipo_de_habitacion, precio_por_noche, disponible_desde, disponible_hasta, reservado)
 VALUES
   ('CH-0002', 'Cataratas Hotel', 'Puerto Iguazú', 'Doble', 6300.00, '2022-02-10', '2022-03-20', false),
-  ('CH-0003', 'Cataratas Hotel 2', 'Puerto Iguazú', 'Triple', 8200.00, '2022-02-10', '2022-03-23', false),
+  ('CH-0003', 'Cataratas Hotel 2', 'Puerto Iguazú', 'Triple', 8200.00, '2022-02-10', '2022-03-19', false),
   ('HB-0001', 'Hotel Bristol', 'Buenos Aires', 'Single', 5435.00, '2022-02-10', '2022-03-19', false),
   ('BH-0002', 'Hotel Bristol 2', 'Buenos Aires', 'Doble', 7200.00, '2022-02-12', '2022-04-17', false),
   ('SH-0002', 'Sheraton', 'Tucumán', 'Doble', 5790.00, '2022-04-17', '2022-05-23', false),

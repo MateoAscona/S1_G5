@@ -10,6 +10,7 @@ import com.Sprint1.Sprint1.utils.HotelResponseFactoryDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,8 @@ public class HotelControllerIntegrationTest {
     public void buscarHotelTest() throws Exception {
 
         // Arrange
-        String fechaPartida = "2022/02/10";
-        String fechaRegreso = "2022/03/20";
+        String fechaPartida = "2022-02-10";
+        String fechaRegreso = "2022-03-20";
         String destino = "Puerto Iguazú";
 
         // Param necesario

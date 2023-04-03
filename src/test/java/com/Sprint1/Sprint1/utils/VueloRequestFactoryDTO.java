@@ -2,6 +2,7 @@ package com.Sprint1.Sprint1.utils;
 
 import com.Sprint1.Sprint1.dto.request.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class VueloRequestFactoryDTO {
@@ -15,13 +16,13 @@ public class VueloRequestFactoryDTO {
     }
     public static VueloReservationData getReservaVueloDatos(){
         return VueloReservationData.builder()
-                .fechaDesde("2022/02/10")
-                .fechaHasta("2022/02/15")
+                .fechaDesde(LocalDate.of(2022, 02, 10))
+                .fechaHasta(LocalDate.of(2022, 02, 15))
                 .origen("Buenos Aires")
                 .destino("Puerto Iguazú")
                 .codigoVuelo("BAPI-1235")
                 .cantidadAsientos(1)
-                .claseAsientos("Single")
+                .claseAsiento("Doble")
                 .personas(List.of(getPersona()))
                 .metodoPago(getPagoDto())
                 .build();

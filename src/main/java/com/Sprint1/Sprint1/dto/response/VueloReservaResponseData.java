@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
-public class VueloReservationData {
+public class VueloReservaResponseData {
     private LocalDate fechaDesde;
     private LocalDate fechaHasta;
     private String origen;

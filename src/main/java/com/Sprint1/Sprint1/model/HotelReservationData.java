@@ -1,6 +1,7 @@
 package com.Sprint1.Sprint1.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 
 @Entity
 @Table(name = "reservas_hotel_data")
@@ -36,6 +38,6 @@ public class HotelReservationData {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<PersonasObject> personas;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.DETACH)
     private StatusCodeObject estado;
 }

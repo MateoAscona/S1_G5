@@ -1,7 +1,12 @@
 package com.Sprint1.Sprint1.utils;
 
+import com.Sprint1.Sprint1.dto.request.VueloReservationData;
 import com.Sprint1.Sprint1.dto.response.*;
+import com.Sprint1.Sprint1.model.StatusCodeObject;
+import com.Sprint1.Sprint1.model.VuelosReservation;
+import com.Sprint1.Sprint1.model.VuelosReservationData;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.Sprint1.Sprint1.utils.HotelRequestFactoryDTO.getPersona;
@@ -12,24 +17,24 @@ public class VueloResponseFactoryDTO {
         return VueloResponseDto.builder()
                 .userName("Cristian")
                 .total(6500.0)
-                .vueloReservationData(getReservaResponse())
+                .vuelosReservationData(getReservaResponse())
                 .build();
 
     }
 
-    public static VueloReservationData getReservaResponse() {
-        return VueloReservationData.builder()
-                .fechaDesde("2022/02/10")
-                .fechaHasta("2022/02/15")
+    public static VuelosReservationData getReservaResponse() {
+        return VuelosReservationData.builder()
+                .fechaDesde(LocalDate.of(2022, 02, 10))
+                .fechaHasta(LocalDate.of(2022, 02, 15))
                 .origen("Buenos Aires")
                 .destino("Puerto Iguazú")
                 .codigoVuelo("BAPI-1235")
                 .cantidadAsientos(1)
-                .claseAsiento("Single")
+                .claseAsiento("Doble")
                 .personas(List.of(getPersona()))
-                .estado(StatusCodeDto.builder()
+                .estado(StatusCodeObject.builder()
                         .code(200)
-                        .mensaje("Funciona correctamente")
+                        .mensaje("Ok")
                         .build())
                 .build();
 
