@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 import java.util.List;
 
 @RestController
@@ -28,6 +28,7 @@ public class HotelController {
 
     @PutMapping("/api/v1/hotels/edit")
     public HotelDTO editarHotel(@RequestBody HotelDTO hotel){
+
         return hotelService.actualizarHotel(hotel);
     }
 
