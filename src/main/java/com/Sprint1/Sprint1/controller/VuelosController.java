@@ -21,7 +21,6 @@ public class VuelosController {
     @Autowired
     VuelosService vuelosService;
 
-
     @GetMapping("/api/v1/flights")
     public List<VuelosObject> buscarVueloPorFecha(
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy/MM/dd") LocalDate fechaPartida,
