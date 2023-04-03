@@ -5,16 +5,16 @@ import com.Sprint1.Sprint1.dto.request.*;
 import java.util.List;
 
 public class VueloRequestFactoryDTO {
-    public static VueloRequestDto getVueloReserva() {
+    public static VueloReservaRequestDto getVueloReserva() {
 
-        return VueloRequestDto.builder()
+        return VueloReservaRequestDto.builder()
                 .nombreUsuario("Cristian")
-                .vueloReserva(getReservaVueloDatos())
+                .vueloReservationData(getReservaVueloDatos())
                 .build();
 
     }
-    public static VueloReservaDto getReservaVueloDatos(){
-        return VueloReservaDto.builder()
+    public static VueloReservationData getReservaVueloDatos(){
+        return VueloReservationData.builder()
                 .fechaDesde("2022/02/10")
                 .fechaHasta("2022/02/15")
                 .origen("Buenos Aires")

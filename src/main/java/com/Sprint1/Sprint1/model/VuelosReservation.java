@@ -1,7 +1,6 @@
 package com.Sprint1.Sprint1.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

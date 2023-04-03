@@ -1,15 +1,20 @@
 package com.Sprint1.Sprint1.service;
 
-import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
+import com.Sprint1.Sprint1.dto.request.VueloDTO;
+import com.Sprint1.Sprint1.dto.request.VueloReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.*;
 import com.Sprint1.Sprint1.exception.SinParametrosException;
 import com.Sprint1.Sprint1.exception.VueloNoEncontradoException;
-import com.Sprint1.Sprint1.model.VuelosObject;
+import com.Sprint1.Sprint1.model.*;
+import com.Sprint1.Sprint1.repository.IVuelosRepository;
+import com.Sprint1.Sprint1.repository.IVuelosReservationRepository;
 import com.Sprint1.Sprint1.repository.VuelosRepository;
 import com.Sprint1.Sprint1.utils.UtilMethods;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.parser.Entity;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +24,14 @@ import java.util.List;
 public class VuelosService {
     @Autowired
     VuelosRepository vuelosRepository;
+
+    @Autowired
+    IVuelosRepository iVuelosRepository;
+
+    @Autowired
+    IVuelosReservationRepository iVuelosReservationRepository;
+
+    ModelMapper mapper = new ModelMapper();
 
     UtilMethods utilMethods = new UtilMethods();
 
@@ -57,38 +70,38 @@ public class VuelosService {
         return vuelosBuscados;
     }
 
-    public VueloResponseDto reservarVueloImpl(VueloRequestDto vueloRequestDto){
+    public VueloResponseDto reservarVueloImpl(VueloReservaRequestDto vueloReservaRequestDto){
 
         VueloResponseDto respuestaFinal = new VueloResponseDto();
         Double precio = 0.0;
 
-        utilMethods.existeDestinoDeVuelo(vueloRequestDto.getVueloReserva().getDestino());
+        utilMethods.existeDestinoDeVuelo(vueloReservaRequestDto.getVueloReservationData().getDestino());
 
-        respuestaFinal.setUserName(vueloRequestDto.getNombreUsuario());
+        respuestaFinal.setUserName(vueloReservaRequestDto.getNombreUsuario());
 
-        for (VuelosObject vuelos : vuelosRepository.getVuelosCargados()) {
+        for (VuelosObject vuelos : iVuelosRepository.findAll()) {
 
-            if(vuelos.getNroVuelo().equals(vueloRequestDto.getVueloReserva().getCodigoVuelo())){
+            if(vuelos.getNroVuelo().equals(vueloReservaRequestDto.getVueloReservationData().getCodigoVuelo())){
                 precio = vuelos.getPrecioPorPersona();
             }
         }
-        respuestaFinal.setTotal(vueloRequestDto.getVueloReserva().getCantidadAsientos() * precio);
+        respuestaFinal.setTotal(vueloReservaRequestDto.getVueloReservationData().getCantidadAsientos() * precio);
 
-        VueloReservaResponseDto reserva = new VueloReservaResponseDto(
+        VueloReservationData reserva2 = mapper.map(vueloReservaRequestDto.getVueloReservationData(), VueloReservationData.class);
 
-                vueloRequestDto.getVueloReserva().getFechaDesde(),
-                vueloRequestDto.getVueloReserva().getFechaHasta(),
-                vueloRequestDto.getVueloReserva().getOrigen(),
-                vueloRequestDto.getVueloReserva().getDestino(),
-                vueloRequestDto.getVueloReserva().getCodigoVuelo(),
-                vueloRequestDto.getVueloReserva().getCantidadAsientos(),
-                vueloRequestDto.getVueloReserva().getClaseAsientos(),
-                vueloRequestDto.getVueloReserva().getPersonas(),
-                new StatusCodeDto(200, "Funciona correctamente")
-                );
+        respuestaFinal.setVueloReservationData(reserva2);
+        var entity = mapper.map(respuestaFinal, VuelosReservation.class);
+        iVuelosReservationRepository.save(entity);
 
-        respuestaFinal.setVueloReservaResponseDto(reserva);
-
-        return respuestaFinal;
+        return mapper.map(entity, VueloResponseDto.class);
     }
+
+    public VueloDTO crearVuelo(VueloDTO nuevoVuelo) {
+        var entity = mapper.map(nuevoVuelo, VuelosObject.class);
+
+        iVuelosRepository.save(entity);
+
+        return mapper.map(entity, VueloDTO.class);
+    }
+
 }

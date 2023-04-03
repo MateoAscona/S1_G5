@@ -1,6 +1,6 @@
 package com.Sprint1.Sprint1.unit.service;
 
-import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
+import com.Sprint1.Sprint1.dto.request.VueloReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
 import com.Sprint1.Sprint1.exception.VueloNoEncontradoException;
 import com.Sprint1.Sprint1.model.VuelosObject;
@@ -61,7 +61,7 @@ public class VuelosServiceTest {
     public void vueloReservaImplTest(){
         //arrange
         VueloResponseDto expected = VueloResponseFactoryDTO.getVueloResponse();
-        VueloRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
+        VueloReservaRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
         //act
         Mockito.when(vuelosRepository.getVuelosCargados()).thenReturn(List.of(VueloFactory.getVuelo()));
         var result = vuelosService.reservarVueloImpl(vuelo);
@@ -73,8 +73,8 @@ public class VuelosServiceTest {
     @Test
     public void vueloReservaImplExceptionTest(){
         //arrange
-        VueloRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
-        vuelo.getVueloReserva().setDestino("a");
+        VueloReservaRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
+        vuelo.getVueloReservationData().setDestino("a");
 
         //act and assert
         Assertions.assertThrows(VueloNoEncontradoException.class,

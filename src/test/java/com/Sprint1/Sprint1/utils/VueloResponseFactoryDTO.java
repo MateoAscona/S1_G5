@@ -12,13 +12,13 @@ public class VueloResponseFactoryDTO {
         return VueloResponseDto.builder()
                 .userName("Cristian")
                 .total(6500.0)
-                .vueloReservaResponseDto(getReservaResponse())
+                .vueloReservationData(getReservaResponse())
                 .build();
 
     }
 
-    public static VueloReservaResponseDto getReservaResponse() {
-        return VueloReservaResponseDto.builder()
+    public static VueloReservationData getReservaResponse() {
+        return VueloReservationData.builder()
                 .fechaDesde("2022/02/10")
                 .fechaHasta("2022/02/15")
                 .origen("Buenos Aires")

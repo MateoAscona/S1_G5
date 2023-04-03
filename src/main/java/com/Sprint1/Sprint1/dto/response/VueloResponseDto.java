@@ -9,5 +9,5 @@ import lombok.*;
 public class VueloResponseDto {
     private String userName;
     private Double total;
-    private VueloReservaResponseDto vueloReservaResponseDto;
+    private VueloReservationData vueloReservationData;
 }
