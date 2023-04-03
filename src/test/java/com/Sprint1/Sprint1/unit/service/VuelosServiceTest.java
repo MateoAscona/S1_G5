@@ -1,9 +1,12 @@
 package com.Sprint1.Sprint1.unit.service;
 
-import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
+import com.Sprint1.Sprint1.dto.request.VueloReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
 import com.Sprint1.Sprint1.exception.VueloNoEncontradoException;
 import com.Sprint1.Sprint1.model.VuelosObject;
+import com.Sprint1.Sprint1.model.VuelosReservation;
+import com.Sprint1.Sprint1.repository.IVuelosRepository;
+import com.Sprint1.Sprint1.repository.IVuelosReservationRepository;
 import com.Sprint1.Sprint1.repository.VuelosRepository;
 import com.Sprint1.Sprint1.service.VuelosService;
 import com.Sprint1.Sprint1.utils.*;
@@ -22,7 +25,10 @@ import java.util.List;
 public class VuelosServiceTest {
 
     @Mock
-    VuelosRepository vuelosRepository;
+    IVuelosRepository vuelosRepository;
+
+    @Mock
+    IVuelosReservationRepository vuelosReservationRepository;
 
     @InjectMocks
     VuelosService vuelosService;
@@ -37,7 +43,8 @@ public class VuelosServiceTest {
         String destino = "Puerto Iguazú";
 
         // art
-        Mockito.when(vuelosRepository.listaDeVuelos()).thenReturn(expected);
+        Mockito.when(vuelosRepository.findByFechasYDestino(fechaPartida, fechaRegreso, destino))
+                .thenReturn(expected);
         var result = vuelosService.listarVuelosPorFechaDestino(fechaPartida, fechaRegreso, destino);
 
         // acert
@@ -61,9 +68,12 @@ public class VuelosServiceTest {
     public void vueloReservaImplTest(){
         //arrange
         VueloResponseDto expected = VueloResponseFactoryDTO.getVueloResponse();
-        VueloRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
+        VueloReservaRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
+        VuelosReservation reserva = VueloReservationFactory.getVueloReservation();
+
         //act
-        Mockito.when(vuelosRepository.getVuelosCargados()).thenReturn(List.of(VueloFactory.getVuelo()));
+        Mockito.when(vuelosRepository.findAll()).thenReturn(List.of(VueloFactory.getVuelo()));
+        Mockito.when(vuelosReservationRepository.save(reserva)).thenReturn(reserva);
         var result = vuelosService.reservarVueloImpl(vuelo);
 
         //assert
@@ -73,8 +83,8 @@ public class VuelosServiceTest {
     @Test
     public void vueloReservaImplExceptionTest(){
         //arrange
-        VueloRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
-        vuelo.getVueloReserva().setDestino("a");
+        VueloReservaRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
+        vuelo.getVueloReservationData().setDestino("a");
 
         //act and assert
         Assertions.assertThrows(VueloNoEncontradoException.class,

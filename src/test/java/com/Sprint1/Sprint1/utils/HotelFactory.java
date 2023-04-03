@@ -7,7 +7,8 @@ import java.time.LocalDate;
 public class HotelFactory {
     public static HotelObject getHotel() {
 
-                return HotelObject.builder()
+        return HotelObject.builder()
+                .id(1)
                 .codigoHotel("CH-0002")
                 .nombre("Cataratas Hotel")
                 .lugarCiudad("Puerto Iguazú")

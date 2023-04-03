@@ -1,5 +1,6 @@
 package com.Sprint1.Sprint1.controller;
 
+import com.Sprint1.Sprint1.dto.MessageDTO;
 import com.Sprint1.Sprint1.dto.request.HotelDTO;
 import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-
 import java.util.List;
 
 @RestController
@@ -20,17 +20,6 @@ public class HotelController {
 
     @Autowired
     HotelService hotelService;
-
-    @PostMapping("/api/v1/hotels/new")
-    public HotelDTO crearHotel(@RequestBody HotelDTO nuevoHotel){
-        return hotelService.nuevoHotel(nuevoHotel);
-    }
-
-    @PutMapping("/api/v1/hotels/edit")
-    public HotelDTO editarHotel(@RequestBody HotelDTO hotel){
-
-        return hotelService.actualizarHotel(hotel);
-    }
 
     @GetMapping("/api/v1/hotels")
     public List<HotelObject> buscarHotelPorFecha(
@@ -47,12 +36,19 @@ public class HotelController {
         }
     }
 
+    @GetMapping("/api/v1/hotel-booking/")
+    public List<HotelResponseDto> listarReservasHotel() {
+        return hotelService.listarReservasHotel();
+    }
+
+    @PostMapping("/api/v1/hotels/new")
+    public HotelDTO crearHotel(@RequestBody HotelDTO nuevoHotel) {
+        return hotelService.nuevoHotel(nuevoHotel);
+    }
+
+
     @PostMapping("/api/v1/hotel-booking/new")
     public HotelResponseDto reservaHotel(@RequestBody @Valid HotelReservaRequestDto hotelReservaRequestDto) {
-
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        //LocalDate fechaPartidaFormateada = LocalDate.parse(hotelReservaRequestDto.getHotelReservationData().getFechaDesde(), formatter);
-        //LocalDate fechaRegresoFormateada = LocalDate.parse(hotelReservaRequestDto.getHotelReservationData().getFechaHasta(), formatter);
 
         if (hotelReservaRequestDto.getHotelReservationData().getFechaDesde().isBefore(hotelReservaRequestDto.getHotelReservationData().getFechaHasta())) {
             return hotelService.hotelReservaImpl(hotelReservaRequestDto);
@@ -61,17 +57,28 @@ public class HotelController {
         }
     }
 
+    @PutMapping("/api/v1/hotels/edit")
+    public HotelDTO editarHotel(@RequestBody HotelDTO hotel) {
+        return hotelService.actualizarHotel(hotel);
+    }
+
     @PutMapping("/api/v1/hotel-booking/edit")
     public HotelResponseDto actualizarReserva(@RequestBody HotelResponseDto hotelReservaDto) {
-
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        //LocalDate fechaPartidaFormateada = LocalDate.parse(hotelReservaRequestDto.getHotelReservationData().getFechaDesde(), formatter);
-        //LocalDate fechaRegresoFormateada = LocalDate.parse(hotelReservaRequestDto.getHotelReservationData().getFechaHasta(), formatter);
 
         if (hotelReservaDto.getHotelReservationData().getFechaDesde().isBefore(hotelReservaDto.getHotelReservationData().getFechaHasta())) {
             return hotelService.actualizarReservaHotel(hotelReservaDto);
         } else {
             throw new FechasEquivocasException();
         }
+    }
+
+    @DeleteMapping("/api/v1/hotels/delete")
+    public MessageDTO borrarHotel(@RequestParam Integer id) {
+        return hotelService.borrarHotel(id);
+    }
+
+    @DeleteMapping("/api/v1/hotel-booking/delete")
+    public MessageDTO borrarReservaHotel(@RequestParam Integer id) {
+        return hotelService.borrarReservaHotel(id);
     }
 }

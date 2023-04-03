@@ -1,7 +1,7 @@
 package com.Sprint1.Sprint1.integration;
 
 import com.Sprint1.Sprint1.dto.ExceptionDto;
-import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
+import com.Sprint1.Sprint1.dto.request.VueloReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
 import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.utils.*;
@@ -108,7 +108,7 @@ public class VuelosControllerIntegrationTest {
     public void reservarVueloTest() throws Exception {
 
         // Arrange
-        VueloRequestDto requestDto = VueloRequestFactoryDTO.getVueloReserva();
+        VueloReservaRequestDto requestDto = VueloRequestFactoryDTO.getVueloReserva();
 
         // La devolucion
         VueloResponseDto response = VueloResponseFactoryDTO.getVueloResponse();
@@ -139,8 +139,8 @@ public class VuelosControllerIntegrationTest {
     public void reservarVuelosExceptionTest() throws Exception {
 
         // Arrange
-       VueloRequestDto requestDto = VueloRequestFactoryDTO.getVueloReserva();
-        requestDto.getVueloReserva().setDestino("Rafaela");
+       VueloReservaRequestDto requestDto = VueloRequestFactoryDTO.getVueloReserva();
+        requestDto.getVueloReservationData().setDestino("Rafaela");
 
         ExceptionDto exceptionDto = new ExceptionDto();
         exceptionDto.setMessage("No se encontró ningún vuelo.");

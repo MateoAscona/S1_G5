@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 
 @Entity
 @Table(name = "data_reservas_vuelos")

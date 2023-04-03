@@ -1,11 +1,14 @@
 package com.Sprint1.Sprint1.controller;
 
-import com.Sprint1.Sprint1.dto.request.VueloRequestDto;
+import com.Sprint1.Sprint1.dto.MessageDTO;
+import com.Sprint1.Sprint1.dto.request.HotelDTO;
+import com.Sprint1.Sprint1.dto.request.VueloDTO;
+import com.Sprint1.Sprint1.dto.request.VueloReservaRequestDto;
+import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
 import com.Sprint1.Sprint1.exception.FechasEquivocasException;
 import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.service.VuelosService;
-import com.Sprint1.Sprint1.utils.UtilMethods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +16,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
 public class VuelosController {
     @Autowired
     VuelosService vuelosService;
-
 
     @GetMapping("/api/v1/flights")
     public List<VuelosObject> buscarVueloPorFecha(
@@ -36,17 +37,49 @@ public class VuelosController {
         }
     }
 
-    @PostMapping("/api/v1/flight-reservation")
-    public VueloResponseDto reservarVuelo(@RequestBody @Valid VueloRequestDto vueloRequestDto) {
+    @GetMapping("/api/v1/flight-reservation/")
+    public List<VueloResponseDto> listarReservasVuelos(){
+        return vuelosService.listarReservas();
+    }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDate fechaPartidaFormateada = LocalDate.parse(vueloRequestDto.getVueloReserva().getFechaDesde(), formatter);
-        LocalDate fechaRegresoFormateada = LocalDate.parse(vueloRequestDto.getVueloReserva().getFechaHasta(), formatter);
+    @PostMapping("/api/v1/flight-reservation/new")
+    public VueloResponseDto reservarVuelo(@RequestBody @Valid VueloReservaRequestDto vueloReservaRequestDto) {
 
-        if (fechaPartidaFormateada.isBefore(fechaRegresoFormateada)) {
-            return vuelosService.reservarVueloImpl(vueloRequestDto);
+        if (vueloReservaRequestDto.getVueloReservationData().getFechaDesde().isBefore(vueloReservaRequestDto.getVueloReservationData().getFechaHasta())) {
+            return vuelosService.reservarVueloImpl(vueloReservaRequestDto);
         } else {
             throw new FechasEquivocasException();
         }
     }
+
+    @PostMapping("/api/v1/flights/new")
+    public VueloDTO crearVuelo(@RequestBody VueloDTO nuevoVuelo) {
+        return vuelosService.crearVuelo(nuevoVuelo);
+    }
+
+    @PutMapping("/api/v1/flights/edit")
+    public VueloDTO editarHotel(@RequestBody VueloDTO vuelo) {
+        return vuelosService.actualizarVuelo(vuelo);
+    }
+
+    @PutMapping("/api/v1/flight-reservation/edit")
+    public VueloResponseDto actualizarReserva(@RequestBody VueloResponseDto vuelo) {
+
+        if (vuelo.getVuelosReservationData().getFechaDesde().isBefore(vuelo.getVuelosReservationData().getFechaHasta())) {
+            return vuelosService.actualizarReservaVuelo(vuelo);
+        } else {
+            throw new FechasEquivocasException();
+        }
+    }
+
+    @DeleteMapping("/api/v1/flights/delete")
+    public MessageDTO borrarVuelo(@RequestParam Integer id) {
+        return vuelosService.borrarVuelo(id);
+    }
+
+    @DeleteMapping("/api/v1/flight-reservation/delete")
+    public MessageDTO borrarReservaVuelo(@RequestParam Integer id) {
+        return vuelosService.borrarReservaVuelo(id);
+    }
+
 }

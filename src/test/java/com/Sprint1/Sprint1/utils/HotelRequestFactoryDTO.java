@@ -4,7 +4,9 @@ import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.request.HotelReservationData;
 import com.Sprint1.Sprint1.dto.request.MetodoPagoDto;
 import com.Sprint1.Sprint1.dto.request.PersonasDto;
+import com.Sprint1.Sprint1.model.PersonasObject;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class HotelRequestFactoryDTO {
@@ -19,8 +21,8 @@ public static HotelReservaRequestDto getHotelReserva() {
 }
     public static HotelReservationData getReservaHotelDatos(){
         return HotelReservationData.builder()
-                .fechaDesde("2022/02/10")
-                .fechaHasta("2022/03/20")
+                .fechaDesde(LocalDate.of(2022, 02, 10))
+                .fechaHasta(LocalDate.of(2022, 03, 20))
                 .destino("Puerto Iguazú")
                 .codigoHotel("CH-0002")
                 .cantidadPersonas(1)
@@ -31,8 +33,8 @@ public static HotelReservaRequestDto getHotelReserva() {
 
     }
 
-    public static PersonasDto getPersona(){
-        return PersonasDto.builder()
+    public static PersonasObject getPersona(){
+        return PersonasObject.builder()
                 .dni("37575676")
                 .nombre("Franco")
                 .apellido("Ambort")
