@@ -10,6 +10,7 @@ import lombok.*;
 @Builder
 public class VueloResponseDto {
     private Integer id;
+    private Integer nroVuelo;
     private String userName;
     private Double total;
     private VuelosReservationData vuelosReservationData;

@@ -9,6 +9,7 @@ import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -34,6 +35,12 @@ public class HotelController {
         } else {
             throw new FechasEquivocasException();
         }
+    }
+
+    @GetMapping("/api/v1/hotels/")
+    public List<HotelResponseDto> listarPorCodigoHotel(@RequestParam ("codigoHotel") String codigoHotel) {
+        List<HotelDTO> hotel = hotelService.getEntitiesByCode(codigoHotel);
+        return ResponseEntity.ok(hotel)
     }
 
     @GetMapping("/api/v1/hotel-booking/")
@@ -81,4 +88,5 @@ public class HotelController {
     public MessageDTO borrarReservaHotel(@RequestParam Integer id) {
         return hotelService.borrarReservaHotel(id);
     }
+
 }

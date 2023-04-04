@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 public class HotelResponseDto {
     private Integer id;
+    private Integer codigoHotel;
     private String nombreUsuario;
     private Double total;
     private HotelReservationData hotelReservationData;

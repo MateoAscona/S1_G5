@@ -4,6 +4,7 @@ import com.Sprint1.Sprint1.dto.MessageDTO;
 import com.Sprint1.Sprint1.dto.request.HotelDTO;
 import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
+import com.Sprint1.Sprint1.dto.response.StatusCodeDto;
 import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
 import com.Sprint1.Sprint1.exception.SinParametrosException;
 import com.Sprint1.Sprint1.model.HotelObject;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HotelService {
@@ -165,5 +167,13 @@ public class HotelService {
         } else {
             throw new HotelNoEncontradoException();
         }
+    }
+
+    public List<HotelDTO> getEntitiesByCode(String code) {
+        List<HotelObject> Hotel = iHotelRepository.findByCode(code);
+        if (Hotel.isEmpty()) {
+            throw new HotelNoEncontradoException();
+        }
+        return Hotel.stream().map(flight -> mapper.map(Hotel, HotelDTO.class)).collect(Collectors.toList());
     }
 }
