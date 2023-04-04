@@ -106,4 +106,27 @@ Link para la reserva del vuelo: http://localhost:8080/api/v1/flight-reservation
     }
 }
 
+Para realizacion de pruebas de Sprint3 tomar como referencia los siguientes datos:
+
+Url:
+
+HOTELES
+Crear hoteles: localhost:8080/api/v1/hotels/new
+Editar hoteles: localhost:8080/api/v1/hotels/edit
+Buscar hoteles: localhost:8080/api/v1/hotels?fechaPartida=2022/03/20&fechaRegreso=2022/04/17&destino=Buenos Aires
+Editar reserva: localhost:8080/api/v1/hotel-booking/edit
+Reservar: localhost:8080/api/v1/hotel-booking/new
+Buscar hoteles: localhost:8080/api/v1/hotels/delete?id=6
+Buscar reserva de Hoteles: localhost:8080/api/v1/hotel-booking/delete?id=2
+Listar hoteles: localhost:8080/api/v1/hotel-booking/
+
+VUELOS:
+
+Reservar vuelo: localhost:8080/api/v1/flight-reservation/new
+Borrar vuelo: localhost:8080/api/v1/flights/delete
+Borrar reserva de vuelo: localhost:8080/api/v1/flight-reservation/delete
+Listar vuelo: localhost:8080/api/v1/flights?fechaPartida=2022/02/10&fechaRegreso=2022/02/21&destino=Bogotá
+Editar vuelo: localhost:8080/api/v1/flights/edit
+Listar reserva de vuelos: localhost:8080/api/v1/flight-reservation/
+
 

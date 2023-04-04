@@ -8,6 +8,20 @@ public class HotelFactory {
     public static HotelObject getHotel() {
 
         return HotelObject.builder()
+                .codigoHotel("CH-0002")
+                .nombre("Cataratas Hotel")
+                .lugarCiudad("Puerto Iguazú")
+                .tipoDeHabitacion("Doble")
+                .precioPorNoche(6300.00)
+                .disponibleDesde(LocalDate.of(2022, 2, 10))
+                .disponibleHasta(LocalDate.of(2022, 3, 20))
+                .reservado(false)
+                .build();
+
+    }
+    public static HotelObject getHotelWithId() {
+
+        return HotelObject.builder()
                 .id(1)
                 .codigoHotel("CH-0002")
                 .nombre("Cataratas Hotel")
