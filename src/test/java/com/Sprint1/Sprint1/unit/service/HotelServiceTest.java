@@ -20,9 +20,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.LocalDate;
 import java.util.List;
+
 
 @ExtendWith(MockitoExtension.class)
 public class HotelServiceTest {
@@ -73,7 +75,7 @@ public class HotelServiceTest {
 
     public void hotelReservaImplTest(){
         //arrange
-        HotelResponseDto expected = HotelResponseFactoryDTO.getHotelResponseFinal();
+        HotelResponseDto expected = HotelResponseFactoryDTO.getHotelResponse();
         HotelReservaRequestDto hotel = HotelRequestFactoryDTO.getHotelReserva();
         HotelReservation reserva = HotelReservationFactory.getHotelReservation();
 

@@ -38,6 +38,6 @@ public class HotelReservationData {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<PersonasObject> personas;
 
-    @OneToOne(cascade = CascadeType.DETACH)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private StatusCodeObject estado;
 }

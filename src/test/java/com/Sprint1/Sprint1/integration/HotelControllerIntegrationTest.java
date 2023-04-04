@@ -9,6 +9,7 @@ import com.Sprint1.Sprint1.utils.HotelRequestFactoryDTO;
 import com.Sprint1.Sprint1.utils.HotelResponseFactoryDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -25,7 +27,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
-
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class HotelControllerIntegrationTest {
@@ -38,6 +40,7 @@ public class HotelControllerIntegrationTest {
     @BeforeEach
     public void setupBeforeAll(){
         writer = new ObjectMapper()
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
                 .registerModule(new JavaTimeModule())
                 .writer();
     }
@@ -45,14 +48,14 @@ public class HotelControllerIntegrationTest {
     public void buscarHotelTest() throws Exception {
 
         // Arrange
-        String fechaPartida = "2022-02-10";
-        String fechaRegreso = "2022-03-20";
+        String fechaPartida = "2022/02/10";
+        String fechaRegreso = "2022/03/20";
         String destino = "Puerto Iguazú";
 
         // Param necesario
 
         // La devolucion
-        List<HotelObject> hotel = List.of(HotelFactory.getHotel());
+        List<HotelObject> hotel = List.of(HotelFactory.getHotelWithId());
 
         // Request
         MockHttpServletRequestBuilder request =
@@ -116,11 +119,11 @@ public class HotelControllerIntegrationTest {
         // Param necesario
 
         // La devolucion
-        HotelResponseDto response = HotelResponseFactoryDTO.getHotelResponse();
+        HotelResponseDto response = HotelResponseFactoryDTO.getHotelResponseFinal();
 
         // Request
         MockHttpServletRequestBuilder request =
-                MockMvcRequestBuilders.post("/api/v1/booking")
+                MockMvcRequestBuilders.post("/api/v1/hotel-booking/new")
                         .content(
                                 writer.writeValueAsString(requestDto)
                         )
@@ -156,7 +159,7 @@ public class HotelControllerIntegrationTest {
 
         // Request
         MockHttpServletRequestBuilder request =
-                MockMvcRequestBuilders.post("/api/v1/booking")
+                MockMvcRequestBuilders.post("/api/v1/hotel-booking/new")
                         .content(
                                 writer.writeValueAsString(requestDto)
                         )

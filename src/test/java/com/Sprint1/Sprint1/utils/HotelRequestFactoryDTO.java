@@ -44,6 +44,19 @@ public static HotelReservaRequestDto getHotelReserva() {
 
 
     }
+
+    public static PersonasObject getPersonaFinal(){
+        return PersonasObject.builder()
+                .id(1)
+                .dni("37575676")
+                .nombre("Franco")
+                .apellido("Ambort")
+                .fechaNacimiento("7 Febrero 1994")
+                .email("ambortfranco94@gmail.com")
+                .build();
+
+
+    }
     public static MetodoPagoDto getPagoDto(){
         return MetodoPagoDto.builder()
                 .tipo("Credito")

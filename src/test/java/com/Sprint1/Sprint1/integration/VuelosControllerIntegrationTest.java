@@ -7,6 +7,7 @@ import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -23,6 +25,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class VuelosControllerIntegrationTest {
@@ -34,6 +37,7 @@ public class VuelosControllerIntegrationTest {
     @BeforeEach
     public void setupBeforeAll(){
         writer = new ObjectMapper()
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
                 .registerModule(new JavaTimeModule())
                 .writer();
     }
@@ -48,7 +52,7 @@ public class VuelosControllerIntegrationTest {
         // Param necesario
 
         // La devolucion
-        List<VuelosObject> vuelo = List.of(VueloFactory.getVuelo());
+        List<VuelosObject> vuelo = List.of(VueloFactory.getVueloWithId());
 
         // Request
         MockHttpServletRequestBuilder request =
@@ -111,11 +115,11 @@ public class VuelosControllerIntegrationTest {
         VueloReservaRequestDto requestDto = VueloRequestFactoryDTO.getVueloReserva();
 
         // La devolucion
-        VueloResponseDto response = VueloResponseFactoryDTO.getVueloResponse();
+        VueloResponseDto response = VueloResponseFactoryDTO.getVueloResponseFinal();
 
         // Request
         MockHttpServletRequestBuilder request =
-                MockMvcRequestBuilders.post("/api/v1/flight-reservation")
+                MockMvcRequestBuilders.post("/api/v1/flight-reservation/new")
                         .content(
                                 writer.writeValueAsString(requestDto)
                         )
@@ -149,7 +153,7 @@ public class VuelosControllerIntegrationTest {
 
         // Request
         MockHttpServletRequestBuilder request =
-                MockMvcRequestBuilders.post("/api/v1/flight-reservation")
+                MockMvcRequestBuilders.post("/api/v1/flight-reservation/new")
                         .content(
                                 writer.writeValueAsString(requestDto)
                         )
