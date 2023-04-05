@@ -35,4 +35,20 @@ public class HotelFactory {
 
     }
 
+    public static HotelObject getHotelWithId2() {
+
+        return HotelObject.builder()
+                .id(2)
+                .codigoHotel("CH-0003")
+                .nombre("Cataratas Hotel 2")
+                .lugarCiudad("Puerto Iguazú")
+                .tipoDeHabitacion("Triple")
+                .precioPorNoche(8200.00)
+                .disponibleDesde(LocalDate.of(2022, 2, 10))
+                .disponibleHasta(LocalDate.of(2022, 3, 19))
+                .reservado(false)
+                .build();
+
+    }
+
 }

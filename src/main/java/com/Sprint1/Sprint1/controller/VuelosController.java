@@ -1,10 +1,8 @@
 package com.Sprint1.Sprint1.controller;
 
 import com.Sprint1.Sprint1.dto.MessageDTO;
-import com.Sprint1.Sprint1.dto.request.HotelDTO;
 import com.Sprint1.Sprint1.dto.request.VueloDTO;
 import com.Sprint1.Sprint1.dto.request.VueloReservaRequestDto;
-import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
 import com.Sprint1.Sprint1.exception.FechasEquivocasException;
 import com.Sprint1.Sprint1.model.VuelosObject;
@@ -81,5 +79,4 @@ public class VuelosController {
     public MessageDTO borrarReservaVuelo(@RequestParam Integer id) {
         return vuelosService.borrarReservaVuelo(id);
     }
-
 }
