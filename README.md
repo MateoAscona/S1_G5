@@ -10,8 +10,8 @@ Repositorio Sprint 3, bootcamp de Java.
 #### Aclaración
 
 Tomé la decision de realizar todo en idioma español a excepción de cosas propias del desarrollo (Ej. Request, Response).
-Para mostrar o filtrar la lista de vuelos por Business, genere un método en el controlador, una query en le repositorio 
-que extiende de JPA y desarrolle la funcionalidad del método en el servicio de vuelos.
+Para mostrar o filtrar la lista de vuelos por Business, genere un método en el controlador, una query de consulta en el 
+repositorio que extiende de JPA y desarrolle la funcionalidad del método en el servicio de vuelos.
 Luego genere dos tipo de resting unitarios: uno sin mock y otro con mock
 ### Vuelos:
 
