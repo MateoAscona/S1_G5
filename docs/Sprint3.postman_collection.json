@@ -64,6 +64,45 @@
 					"response": []
 				},
 				{
+					"name": "Buscar por codigo Hotel",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigoHotel\" : “CH-0002”\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/hotels/?codigo=CH-0002",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hotels",
+								""
+							],
+							"query": [
+								{
+									"key": "codigo",
+									"value": "CH-0002"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Crear Hotel",
 					"request": {
 						"method": "POST",
@@ -299,6 +338,45 @@
 								"v1",
 								"flight-reservation",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por numero de Vuelo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nroVuelo\": “BAPI-1235”\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/flights/?nroVuelo=BAPI-1235",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"flights",
+								""
+							],
+							"query": [
+								{
+									"key": "nroVuelo",
+									"value": "BAPI-1235"
+								}
 							]
 						}
 					},
