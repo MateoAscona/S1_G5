@@ -42,6 +42,11 @@ public class VuelosController {
         return vuelosService.listarReservas();
     }
 
+    @GetMapping("/api/v1/flights/business")
+    public List<VuelosObject> obtenerVuelosBusiness(@RequestParam(required = false) String tipoAsiento) {
+        return vuelosService.obtenerVuelosBusiness();
+    }
+
     @PostMapping("/api/v1/flight-reservation/new")
     public VueloResponseDto reservarVuelo(@RequestBody @Valid VueloReservaRequestDto vueloReservaRequestDto) {
 
@@ -83,3 +88,9 @@ public class VuelosController {
     }
 
 }
+
+
+
+
+
+

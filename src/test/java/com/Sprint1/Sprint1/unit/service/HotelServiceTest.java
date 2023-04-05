@@ -5,7 +5,6 @@ import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.model.HotelReservation;
-import com.Sprint1.Sprint1.repository.HotelRepository;
 import com.Sprint1.Sprint1.repository.IHotelRepository;
 import com.Sprint1.Sprint1.repository.IHotelReservationRepository;
 import com.Sprint1.Sprint1.service.HotelService;
@@ -20,11 +19,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.LocalDate;
 import java.util.List;
-
 
 @ExtendWith(MockitoExtension.class)
 public class HotelServiceTest {

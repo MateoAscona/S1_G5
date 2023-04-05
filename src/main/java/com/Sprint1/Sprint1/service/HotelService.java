@@ -10,7 +10,6 @@ import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.model.HotelReservation;
 import com.Sprint1.Sprint1.model.HotelReservationData;
 import com.Sprint1.Sprint1.model.StatusCodeObject;
-import com.Sprint1.Sprint1.repository.HotelRepository;
 import com.Sprint1.Sprint1.repository.IHotelRepository;
 import com.Sprint1.Sprint1.repository.IHotelReservationRepository;
 import com.Sprint1.Sprint1.utils.UtilMethods;

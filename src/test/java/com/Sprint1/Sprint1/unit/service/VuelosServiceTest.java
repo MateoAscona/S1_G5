@@ -3,11 +3,11 @@ package com.Sprint1.Sprint1.unit.service;
 import com.Sprint1.Sprint1.dto.request.VueloReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.VueloResponseDto;
 import com.Sprint1.Sprint1.exception.VueloNoEncontradoException;
+
 import com.Sprint1.Sprint1.model.VuelosObject;
 import com.Sprint1.Sprint1.model.VuelosReservation;
 import com.Sprint1.Sprint1.repository.IVuelosRepository;
 import com.Sprint1.Sprint1.repository.IVuelosReservationRepository;
-import com.Sprint1.Sprint1.repository.VuelosRepository;
 import com.Sprint1.Sprint1.service.VuelosService;
 import com.Sprint1.Sprint1.utils.*;
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +20,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
 @ExtendWith(MockitoExtension.class)
 public class VuelosServiceTest {
 
@@ -34,7 +39,7 @@ public class VuelosServiceTest {
     VuelosService vuelosService;
 
     @Test
-    public void buscarVueloPorFechaTest () throws ParseException {
+    public void buscarVueloPorFechaTest() throws ParseException {
         // arrange
         List<VuelosObject> expected = List.of(VueloFactory.getVuelo());
 
@@ -43,13 +48,14 @@ public class VuelosServiceTest {
         String destino = "Puerto Iguazú";
 
         // art
-        Mockito.when(vuelosRepository.findByFechasYDestino(fechaPartida, fechaRegreso, destino))
+        when(vuelosRepository.findByFechasYDestino(fechaPartida, fechaRegreso, destino))
                 .thenReturn(expected);
         var result = vuelosService.listarVuelosPorFechaDestino(fechaPartida, fechaRegreso, destino);
 
         // acert
-        Assertions.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
+
     @Test
     public void buscarVueloPorFechaExceptionTest() {
         // arrange
@@ -65,30 +71,63 @@ public class VuelosServiceTest {
     }
 
     @Test
-    public void vueloReservaImplTest(){
+    public void vueloReservaImplTest() {
         //arrange
         VueloResponseDto expected = VueloResponseFactoryDTO.getVueloResponse();
         VueloReservaRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
         VuelosReservation reserva = VueloReservationFactory.getVueloReservation();
 
         //act
-        Mockito.when(vuelosRepository.findAll()).thenReturn(List.of(VueloFactory.getVuelo()));
-        Mockito.when(vuelosReservationRepository.save(reserva)).thenReturn(reserva);
+        when(vuelosRepository.findAll()).thenReturn(List.of(VueloFactory.getVuelo()));
+        when(vuelosReservationRepository.save(reserva)).thenReturn(reserva);
         var result = vuelosService.reservarVueloImpl(vuelo);
 
         //assert
-        Assertions.assertEquals(expected, result);
+        assertEquals(expected, result);
     }
 
     @Test
-    public void vueloReservaImplExceptionTest(){
+    public void vueloReservaImplExceptionTest() {
         //arrange
         VueloReservaRequestDto vuelo = VueloRequestFactoryDTO.getVueloReserva();
         vuelo.getVueloReservationData().setDestino("a");
 
         //act and assert
         Assertions.assertThrows(VueloNoEncontradoException.class,
-                ()-> vuelosService.reservarVueloImpl(vuelo));
+                () -> vuelosService.reservarVueloImpl(vuelo));
+    }
+
+
+    @Test
+    public void obtenerVuelosBusinessTest() {
+        //arrange
+        List<VuelosObject> expected = List.of(VueloFactory.getVueloBusiness());
+        String tipoAsiento = "ECONOMY";
+
+        // act  and acert
+        Assertions.assertThrows(VueloNoEncontradoException.class,
+                () -> vuelosService.obtenerVuelosBusiness());
+
     }
 }
+
+    //devuelve una lista de vuelos de tipo Business cuando se proporcionan datos de entrada válidos
+  /*  @Test
+    public void obtenerVuelosBusinessConDatosValidosTest() {
+
+        // arrange:Crear un mock object del repositorio que devuelve una lista de vuelos de tipo Business
+
+        List<VuelosObject> expectedvuelosBusiness = List.of(VueloFactory.getVueloBusiness());
+        //act
+        Mockito.when(IVuelosRepository.obtenerVuelosBusiness().thenReturn(expectedvuelosBusiness));
+        // Llamar al método y verificar que devuelve la lista de vuelos de tipo Business
+        var result = vuelosService.obtenerVuelosBusiness();
+        //assert:
+        Assertions.assertEquals(expectedvuelosBusiness, result);
+
+    }
+}*/
+
+
+
 

@@ -1,7 +1,5 @@
 package com.Sprint1.Sprint1.model;
 
-import com.Sprint1.Sprint1.dto.request.PersonasDto;
-import com.Sprint1.Sprint1.dto.response.StatusCodeDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -14,4 +14,9 @@ public interface IVuelosRepository extends JpaRepository<VuelosObject, Integer> 
     @Query("SELECT h FROM VuelosObject h WHERE h.fechaIda <= :fechaPartida AND h.fechaVuelta >= :fechaRegreso AND h.destino = :destino")
     List<VuelosObject> findByFechasYDestino(@Param("fechaPartida") LocalDate fechaPartida, @Param("fechaRegreso") LocalDate fechaRegreso, @Param("destino") String destino);
 
+    @Query("SELECT v FROM VuelosObject v WHERE v.tipoAsiento = 'Business'")
+    List<VuelosObject> obtenerVuelosBusiness();
+
+
 }
+

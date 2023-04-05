@@ -1,12 +1,9 @@
 package com.Sprint1.Sprint1.service;
 
 import com.Sprint1.Sprint1.dto.MessageDTO;
-import com.Sprint1.Sprint1.dto.request.HotelDTO;
 import com.Sprint1.Sprint1.dto.request.VueloDTO;
 import com.Sprint1.Sprint1.dto.request.VueloReservaRequestDto;
-import com.Sprint1.Sprint1.dto.request.VueloReservationData;
 import com.Sprint1.Sprint1.dto.response.*;
-import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
 import com.Sprint1.Sprint1.exception.SinParametrosException;
 import com.Sprint1.Sprint1.exception.VueloNoEncontradoException;
 import com.Sprint1.Sprint1.model.*;
@@ -22,6 +19,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VuelosService {
@@ -175,4 +173,11 @@ public class VuelosService {
             throw new VueloNoEncontradoException();
         }
     }
+
+    public List<VuelosObject> obtenerVuelosBusiness() {
+        return Optional.ofNullable(iVuelosRepository.obtenerVuelosBusiness())
+                .filter(vuelos -> !vuelos.isEmpty())
+                .orElseThrow(() -> new VueloNoEncontradoException());
+    }
+
 }
