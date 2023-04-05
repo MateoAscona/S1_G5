@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HotelService {
@@ -62,6 +63,12 @@ public class HotelService {
             lista.add(mapper.map(reserva, HotelResponseDto.class));
         }
         return lista;
+    }
+
+    public List<HotelObject> buscarHotelesDisponibles(Double precioMaximo, Integer cantidadPersonas, String destino, String tipoDeHabitacion) {
+        utilMethods.relacionPersonasHabitaciones(tipoDeHabitacion,cantidadPersonas);
+
+        return iHotelRepository.findByParametros(precioMaximo,destino,cantidadPersonas,tipoDeHabitacion);
     }
 
     public HotelDTO nuevoHotel(HotelDTO hotelDTO) {

@@ -44,7 +44,7 @@ public class UtilMethods {
         }
     }
 
-    public void relacionPersonasHabitaciones(String tipoHabitacion, int cantidadPersonas){
+    public void relacionPersonasHabitaciones(String tipoHabitacion, Integer cantidadPersonas){
         switch(tipoHabitacion){
             case "Single":
                 if(cantidadPersonas != 1){

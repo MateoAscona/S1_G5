@@ -1,6 +1,5 @@
 package com.Sprint1.Sprint1.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;

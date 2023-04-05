@@ -33,7 +33,7 @@ public class HotelReservationData {
     @Column
     private Integer cantidadPersonas;
     @Column
-    private String tipoHabitacion;
+    private String tipoDeHabitacion;
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<PersonasObject> personas;

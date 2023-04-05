@@ -98,4 +98,23 @@ public class HotelServiceTest {
                 ()-> hotelService.hotelReservaImpl(hotel));
 
     }
+
+    @Test
+    public void buscarHotelesPorParams(){
+        List<HotelObject> expected = List.of(HotelFactory.getHotel());
+
+        Double precioMaximo = 6500.0;
+        Integer cantidadPersonas = 2;
+        String destino = "Buenos Aires";
+        String tipoDeHabitacion = "Doble";
+
+        Mockito.when(hotelRepository.findByParametros(precioMaximo
+                ,destino,cantidadPersonas,tipoDeHabitacion))
+                .thenReturn(expected);
+        var result = hotelService.buscarHotelesDisponibles(precioMaximo,cantidadPersonas,destino,tipoDeHabitacion);
+
+        // acert
+        Assertions.assertEquals(expected, result);
+
+    }
 }

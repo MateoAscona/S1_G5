@@ -5,7 +5,9 @@ import com.Sprint1.Sprint1.dto.request.HotelDTO;
 import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.exception.FechasEquivocasException;
+import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
 import com.Sprint1.Sprint1.model.HotelObject;
+import com.Sprint1.Sprint1.repository.IHotelRepository;
 import com.Sprint1.Sprint1.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,6 +37,19 @@ public class HotelController {
             throw new FechasEquivocasException();
         }
     }
+//Por parametros pasar destino,cantidad de personas y valor
+//  GET /api/hoteles?ubicacion=Madrid&fecha_entrada=2023-04-10&fecha_salida=2023-04-15&num_personas=2
+ @GetMapping("/api/v1/hotels/busqueda")
+  public List<HotelObject>buscarHoetelesDisponibles( @RequestParam String destino,@RequestParam Double precioMaximo,@RequestParam (required = true)Integer cantidadPersonas,@RequestParam String tipoDeHabitacion) {
+
+     if (destino == null || precioMaximo == null || tipoDeHabitacion == null ) {
+         throw new IllegalArgumentException(" destino, precio ,tipo de habitacion son obligatorios.");
+     }
+     return hotelService.buscarHotelesDisponibles(precioMaximo, cantidadPersonas, destino, tipoDeHabitacion);
+
+ }
+
+
 
     @GetMapping("/api/v1/hotel-booking/")
     public List<HotelResponseDto> listarReservasHotel() {
