@@ -1,4 +1,4 @@
-S1_G5
+S3_G5
 
 
 ### Entrega Individual:
@@ -7,122 +7,59 @@ S1_G5
 
 Repositorio Sprint 3, bootcamp de Java.
 
-#### Aclaracion
+#### Aclaración
 
-Tomamos la decision de realizar todo en idioma español a excepcion de cosas propias del desarrollo (Ej. Request, Response).
-
-### Datos para realizar pruebas
-
-#### Hoteles:
-
-Link para todos los hoteles: http://localhost:8080/api/v1/hotels
-
-Links para testear filtro: http://localhost:8080/api/v1/hotel?dateFrom=11/02/2022&dateTo=10/03/2022&destination=Puerto Iguazú
-
-http://localhost:8080/api/v1/hotel?dateFrom=11/02/2022&dateTo=10/03/2022&destination=Buenos Aires
-
-http://localhost:8080/api/v1/hotel?dateFrom=11/02/2022&dateTo=10/03/2022&destination=Bogotá
-
-Link para la reserva de hotel: http://localhost:8080/api/v1/booking
-
-{
-    "nombreUsuario": "Cristian",
-    "hotelBooking":
-        {
-            "fechaDesde": "20",
-            "fechaHasta": "20",
-            "destino": "Rafaela",
-            "codigoHotel": "2CH4OA",
-            "cantidadPersonas": 2,
-            "tipoHabitacion": "single",
-            "personas": [
-                {
-                    "dni": "37.575.676",
-                    "nombre": "Fanco",
-                    "apellido": "Ambort",
-                    "fechaNacimiento": "7 Febrero 1994",
-                    "email": "ambortfranco94@gmail.com"
-                },
-                {
-                    "dni": "37.575.676",
-                    "nombre": "Fanco",
-                    "apellido": "Ambort",
-                    "fechaNacimiento": "7 Febrero 1994",
-                    "email": "ambortfranco94@gmail.com"
-                }
-            ],
-            "metodoPago": {
-                "tipo": "credito",
-                "numero": "3423213",
-                "cuotas": 18
-            } 
-        }
-}
-
+Tomé la decision de realizar todo en idioma español a excepción de cosas propias del desarrollo (Ej. Request, Response).
+Para mostrar o filtrar la lista de vuelos por Business, genere un método en el controlador, una query en le repositorio 
+que extiende de JPA y desarrolle la funcionalidad del método en el servicio de vuelos.
+Luego genere dos tipo de resting unitarios: uno sin mock y otro con mock
 ### Vuelos:
 
-Link para todos los vuelos: http://localhost:8080/api/v1/flights
+Link para listar vuelos por business: "/api/v1/flights/business"
 
-Links para testear filtro: http://localhost:8080/api/v1/flights?fechaPartida=2022/02/10&fechaRegreso=2022/02/15&destino=Bogotá
-                           http://localhost:8080/api/v1/hotels?fechaPartida=2022/02/10&fechaRegreso=2022/03/20&destino=Puerto Iguazú
-
-Link para la reserva del vuelo: http://localhost:8080/api/v1/flight-reservation
-(metodo POST objeto de ejemplo)
+RESPONSE:
+[
 {
-    "nombreUsuario": "arjonamiguel@gmail.com",
-    "vueloReserva": {
-        "fechaDesde": "2021/11/10",
-        "fechaHasta": "2021/11/10",
-        "origen": "Buenos Aires",
-        "destino": "Puerto Iguazú",
-        "codigoVuelo": "FFFF-0002",
-        "cantidadAsientos": 2,
-        "claseAsientos": "ECONOMY",
-        "personas": [
-            {
-                "dni": "12345678",
-                "nombre": "Pepito",
-                "apellido": "Gomez",
-                "fechaNacimiento": "10/11/1982",
-                "email": "arjonamiguel@gmail.com"
-            },
-            {
-                "dni": "13345678",
-                "nombre": "Fulanito",
-                "apellido": "Gomez",
-                "fechaNacimiento": "10/11/1983",
-                "email": "arjonamiguel2@gmail.com"
-            }
-        ],
-        "metodoPago": {
-            "tipo": "CREDIT",
-            "numero": "1234-1234-1234-1234",
-            "cuotas": 6
-        }
-    }
+"id": 2,
+"nroVuelo": "PIBA-1420",
+"origen": "Puerto Iguazú",
+"destino": "Bogotá",
+"tipoAsiento": "Business",
+"precioPorPersona": 43200.0,
+"fechaIda": "2022-02-10",
+"fechaVuelta": "2022-02-20"
+},
+{
+"id": 5,
+"nroVuelo": "TUPI-3369",
+"origen": "Tucumán",
+"destino": "Puerto Iguazú",
+"tipoAsiento": "Business",
+"precioPorPersona": 12530.0,
+"fechaIda": "2022-02-12",
+"fechaVuelta": "2022-02-23"
+},
+{
+"id": 9,
+"nroVuelo": "BOBA-6567",
+"origen": "Bogotá",
+"destino": "Buenos Aires",
+"tipoAsiento": "Business",
+"precioPorPersona": 57000.0,
+"fechaIda": "2022-02-15",
+"fechaVuelta": "2022-02-28"
+},
+{
+"id": 12,
+"nroVuelo": "MEPI-9986",
+"origen": "Medellín",
+"destino": "Puerto Iguazú",
+"tipoAsiento": "Business",
+"precioPorPersona": 41640.0,
+"fechaIda": "2022-04-17",
+"fechaVuelta": "2022-05-02"
 }
+]
 
-Para realizacion de pruebas de Sprint3 tomar como referencia los siguientes datos:
-
-Url:
-
-HOTELES
-Crear hoteles: localhost:8080/api/v1/hotels/new
-Editar hoteles: localhost:8080/api/v1/hotels/edit
-Buscar hoteles: localhost:8080/api/v1/hotels?fechaPartida=2022/03/20&fechaRegreso=2022/04/17&destino=Buenos Aires
-Editar reserva: localhost:8080/api/v1/hotel-booking/edit
-Reservar: localhost:8080/api/v1/hotel-booking/new
-Buscar hoteles: localhost:8080/api/v1/hotels/delete?id=6
-Buscar reserva de Hoteles: localhost:8080/api/v1/hotel-booking/delete?id=2
-Listar hoteles: localhost:8080/api/v1/hotel-booking/
-
-VUELOS:
-
-Reservar vuelo: localhost:8080/api/v1/flight-reservation/new
-Borrar vuelo: localhost:8080/api/v1/flights/delete
-Borrar reserva de vuelo: localhost:8080/api/v1/flight-reservation/delete
-Listar vuelo: localhost:8080/api/v1/flights?fechaPartida=2022/02/10&fechaRegreso=2022/02/21&destino=Bogotá
-Editar vuelo: localhost:8080/api/v1/flights/edit
-Listar reserva de vuelos: localhost:8080/api/v1/flight-reservation/
 
 

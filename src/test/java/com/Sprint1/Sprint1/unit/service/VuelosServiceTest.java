@@ -109,24 +109,23 @@ public class VuelosServiceTest {
                 () -> vuelosService.obtenerVuelosBusiness());
 
     }
-}
+
 
     //devuelve una lista de vuelos de tipo Business cuando se proporcionan datos de entrada válidos
-  /*  @Test
+    @Test
     public void obtenerVuelosBusinessConDatosValidosTest() {
 
         // arrange:Crear un mock object del repositorio que devuelve una lista de vuelos de tipo Business
-
-        List<VuelosObject> expectedvuelosBusiness = List.of(VueloFactory.getVueloBusiness());
+        List<VuelosObject> expectedVuelosBusiness = List.of(VueloFactory.getVueloBusiness());
         //act
-        Mockito.when(IVuelosRepository.obtenerVuelosBusiness().thenReturn(expectedvuelosBusiness));
+        Mockito.when(vuelosRepository.obtenerVuelosBusiness()).thenReturn(expectedVuelosBusiness);
         // Llamar al método y verificar que devuelve la lista de vuelos de tipo Business
         var result = vuelosService.obtenerVuelosBusiness();
         //assert:
-        Assertions.assertEquals(expectedvuelosBusiness, result);
+        Assertions.assertEquals(expectedVuelosBusiness, result);
 
     }
-}*/
+}
 
 
 
