@@ -37,6 +37,11 @@ public class VuelosController {
         }
     }
 
+    @GetMapping("/api/v1/flights/")
+    public List<VueloDTO> buscarVueloPorNumero(@RequestParam String nroVuelo) {
+        return vuelosService.buscarVueloPorNumero(nroVuelo);
+    }
+
     @GetMapping("/api/v1/flight-reservation/")
     public List<VueloResponseDto> listarReservasVuelos(){
         return vuelosService.listarReservas();

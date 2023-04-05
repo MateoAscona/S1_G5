@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -169,11 +170,13 @@ public class HotelService {
         }
     }
 
-    public List<HotelDTO> getEntitiesByCode(String code) {
-        List<HotelObject> Hotel = iHotelRepository.findByCode(code);
-        if (Hotel.isEmpty()) {
+    public List<HotelDTO> buscarHotelesPorCodigo(String codigo) {
+        List<HotelObject> hoteles = iHotelRepository.findAllByCodigoHotel(codigo);
+        if (hoteles.isEmpty()) {
             throw new HotelNoEncontradoException();
         }
-        return Hotel.stream().map(flight -> mapper.map(Hotel, HotelDTO.class)).collect(Collectors.toList());
+        return hoteles.stream()
+                .map(hotel -> mapper.map(hotel, HotelDTO.class))
+                .collect(Collectors.toList());
     }
 }

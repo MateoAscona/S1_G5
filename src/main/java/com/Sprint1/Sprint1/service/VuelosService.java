@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class VuelosService {
@@ -174,5 +175,15 @@ public class VuelosService {
         } else {
             throw new VueloNoEncontradoException();
         }
+    }
+
+    public List<VueloDTO> buscarVueloPorNumero(String nroVuelo) {
+        List<VuelosObject> vuelos = iVuelosRepository.findAllByNumeroVuelo(nroVuelo);
+        if (vuelos.isEmpty()) {
+            throw new VueloNoEncontradoException();
+        }
+        return vuelos.stream()
+                .map(vuelo -> mapper.map(vuelo, VueloDTO.class))
+                .collect(Collectors.toList());
     }
 }

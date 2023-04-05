@@ -38,9 +38,8 @@ public class HotelController {
     }
 
     @GetMapping("/api/v1/hotels/")
-    public List<HotelResponseDto> listarPorCodigoHotel(@RequestParam ("codigoHotel") String codigoHotel) {
-        List<HotelDTO> hotel = hotelService.getEntitiesByCode(codigoHotel);
-        return ResponseEntity.ok(hotel)
+    public List<HotelDTO> buscarHotelPorCodigo(@RequestParam String codigo) {
+        return hotelService.buscarHotelesPorCodigo(codigo);
     }
 
     @GetMapping("/api/v1/hotel-booking/")
