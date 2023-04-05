@@ -5,7 +5,7 @@ S1_G5
 - Gisel Lorenzatti
 
 
-Repositorio Sprint 1, bootcamp de Java.
+Repositorio Sprint 3, bootcamp de Java.
 
 #### Aclaracion
 
