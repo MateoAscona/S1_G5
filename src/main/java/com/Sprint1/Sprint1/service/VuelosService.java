@@ -178,7 +178,7 @@ public class VuelosService {
     }
 
     public List<VueloDTO> buscarVueloPorNumero(String nroVuelo) {
-        List<VuelosObject> vuelos = iVuelosRepository.findAllByNumeroVuelo(nroVuelo);
+        List<VuelosObject> vuelos = iVuelosRepository.findAllByNroVuelo(nroVuelo);
         if (vuelos.isEmpty()) {
             throw new VueloNoEncontradoException();
         }

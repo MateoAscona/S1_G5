@@ -119,6 +119,7 @@ Reservar: localhost:8080/api/v1/hotel-booking/new
 Buscar hoteles: localhost:8080/api/v1/hotels/delete?id=6
 Buscar reserva de Hoteles: localhost:8080/api/v1/hotel-booking/delete?id=2
 Listar hoteles: localhost:8080/api/v1/hotel-booking/
+Buscar hotel por numero de hotel: localhost:8080/api/v1/hotels/?codigo=CH-0002
 
 VUELOS:
 
@@ -128,5 +129,6 @@ Borrar reserva de vuelo: localhost:8080/api/v1/flight-reservation/delete
 Listar vuelo: localhost:8080/api/v1/flights?fechaPartida=2022/02/10&fechaRegreso=2022/02/21&destino=Bogotá
 Editar vuelo: localhost:8080/api/v1/flights/edit
 Listar reserva de vuelos: localhost:8080/api/v1/flight-reservation/
+Buscar vuelo por numero de vuelo: localhost:8080/api/v1/flights/?numero=BAPI-1235
 
 

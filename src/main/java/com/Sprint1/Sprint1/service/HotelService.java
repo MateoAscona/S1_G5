@@ -4,14 +4,12 @@ import com.Sprint1.Sprint1.dto.MessageDTO;
 import com.Sprint1.Sprint1.dto.request.HotelDTO;
 import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
-import com.Sprint1.Sprint1.dto.response.StatusCodeDto;
 import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
 import com.Sprint1.Sprint1.exception.SinParametrosException;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.model.HotelReservation;
 import com.Sprint1.Sprint1.model.HotelReservationData;
 import com.Sprint1.Sprint1.model.StatusCodeObject;
-import com.Sprint1.Sprint1.repository.HotelRepository;
 import com.Sprint1.Sprint1.repository.IHotelRepository;
 import com.Sprint1.Sprint1.repository.IHotelReservationRepository;
 import com.Sprint1.Sprint1.utils.UtilMethods;
@@ -22,7 +20,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

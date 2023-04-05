@@ -1,11 +1,11 @@
 package com.Sprint1.Sprint1.unit.service;
 
+import com.Sprint1.Sprint1.dto.request.HotelDTO;
 import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.exception.HotelNoEncontradoException;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.model.HotelReservation;
-import com.Sprint1.Sprint1.repository.HotelRepository;
 import com.Sprint1.Sprint1.repository.IHotelRepository;
 import com.Sprint1.Sprint1.repository.IHotelReservationRepository;
 import com.Sprint1.Sprint1.service.HotelService;
@@ -14,15 +14,16 @@ import com.Sprint1.Sprint1.utils.HotelRequestFactoryDTO;
 import com.Sprint1.Sprint1.utils.HotelReservationFactory;
 import com.Sprint1.Sprint1.utils.HotelResponseFactoryDTO;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -72,7 +73,6 @@ public class HotelServiceTest {
     }
 
     @Test
-
     public void hotelReservaImplTest(){
         //arrange
         HotelResponseDto expected = HotelResponseFactoryDTO.getHotelResponse();
@@ -98,4 +98,30 @@ public class HotelServiceTest {
                 ()-> hotelService.hotelReservaImpl(hotel));
 
     }
-}
+
+    @Test
+    @DisplayName("Verificar que un hotel que esta cargado por codigo de hotel, no se encuentre")
+    void buscarHotelesPorCodigo() {
+        // arrange
+        String codigo = "codigo";
+        List<HotelObject> hotelesObject = new ArrayList<>();
+        HotelObject hotelObject = new HotelObject();
+        hotelObject.setCodigoHotel(codigo);
+        hotelesObject.add(hotelObject);
+        Mockito.when(hotelRepository.findAllByCodigoHotel(codigo)).thenReturn(hotelesObject);
+
+        List<HotelDTO> hotelesDTO = new ArrayList<>();
+        HotelDTO hotelDTO = new HotelDTO();
+        hotelDTO.setCodigoHotel(codigo);
+        hotelesDTO.add(hotelDTO);
+       // when(mapper.map(hotelObject, HotelDTO.class)).thenReturn(hotelDTO);
+
+        // act
+        List<HotelDTO> resultado = hotelService.buscarHotelesPorCodigo(codigo);
+
+        // assert
+        Assertions.assertEquals(hotelesDTO, resultado);
+    }
+
+    }
+
