@@ -1,13 +1,9 @@
 S1_G5
 
 
-### Integrantes
-- Mateo Ascona
-- Jonatan Garcia
+### Entrega Individual:
 - Gisel Lorenzatti
-- Franco Ambort
-- Celeste Sanchez
-- Gisela Burgos.
+
 
 Repositorio Sprint 1, bootcamp de Java.
 
