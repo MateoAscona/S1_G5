@@ -15,7 +15,7 @@ import java.util.List;
 
 @Data
 @Repository
-public class HotelRepository {
+public class HotelRepository  {
 
     HotelObject hotelObject = new HotelObject();
 

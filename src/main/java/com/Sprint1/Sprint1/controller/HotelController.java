@@ -5,6 +5,7 @@ import com.Sprint1.Sprint1.dto.request.HotelDTO;
 import com.Sprint1.Sprint1.dto.request.HotelReservaRequestDto;
 import com.Sprint1.Sprint1.dto.response.HotelResponseDto;
 import com.Sprint1.Sprint1.exception.FechasEquivocasException;
+import com.Sprint1.Sprint1.exception.SinParametrosException;
 import com.Sprint1.Sprint1.model.HotelObject;
 import com.Sprint1.Sprint1.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,14 @@ public class HotelController {
             throw new FechasEquivocasException();
         }
     }
+
+
+    @GetMapping("/api/v1/hotelsByPriceAsc")
+    public List<HotelObject> ordenarHotelPorPrecioAsc(
+            @RequestParam(required = false) String destino) {
+            return hotelService.findAllByReservadoFalseOrderByPrecioPorNocheAsc(destino);
+    }
+
 
     @GetMapping("/api/v1/hotel-booking/")
     public List<HotelResponseDto> listarReservasHotel() {

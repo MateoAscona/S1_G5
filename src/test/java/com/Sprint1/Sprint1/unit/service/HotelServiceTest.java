@@ -96,4 +96,43 @@ public class HotelServiceTest {
                 ()-> hotelService.hotelReservaImpl(hotel));
 
     }
+
+
+
+
+
+
+
+
+
+
+
+    @Test
+    public void findAllByReservadoFalseOrderByPrecioPorNocheAscTest() {
+        // arrange
+        List<HotelObject> expected = List.of(HotelFactory.getHotel());
+
+        String destino = "Puerto Iguazú";
+
+        // art
+        Mockito.when(hotelRepository.findCheapestHotels(destino))
+                .thenReturn(expected);
+        var result = hotelService.findAllByReservadoFalseOrderByPrecioPorNocheAsc(destino);
+
+        // acert
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void findAllByReservadoFalseOrderByPrecioPorNocheAscExceptionTest() {
+        // arrange
+        List<HotelObject> expected = List.of(HotelFactory.getHotel());
+
+        String destino = "Rafaela";
+
+
+        // act  and acert
+        Assertions.assertThrows(HotelNoEncontradoException.class,
+                () -> hotelService.findAllByReservadoFalseOrderByPrecioPorNocheAsc(destino) );
+    }
 }

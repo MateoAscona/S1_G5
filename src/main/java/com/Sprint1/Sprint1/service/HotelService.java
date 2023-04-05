@@ -55,6 +55,29 @@ public class HotelService {
         return hotelesBuscados;
     }
 
+    public List<HotelObject> findAllByReservadoFalseOrderByPrecioPorNocheAsc(String destino) {
+
+        if (destino == null) {
+            throw new SinParametrosException();
+        }
+
+
+        utilMethods.existeDestino(destino);
+
+        List<HotelObject> hotelesBuscadosPorPrecioAsc;
+
+        hotelesBuscadosPorPrecioAsc = iHotelRepository.findCheapestHotels(destino);
+
+        if (hotelesBuscadosPorPrecioAsc.isEmpty()) {
+            throw new HotelNoEncontradoException();
+        }
+
+        return hotelesBuscadosPorPrecioAsc;
+
+
+    }
+
+
     public List<HotelResponseDto> listarReservasHotel() {
         List<HotelResponseDto> lista = new ArrayList<>();
 

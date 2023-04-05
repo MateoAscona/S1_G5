@@ -13,4 +13,8 @@ public interface IHotelRepository extends JpaRepository<HotelObject, Integer> {
     @Query("SELECT h FROM HotelObject h WHERE h.disponibleDesde <= :fechaPartida AND h.disponibleHasta >= :fechaRegreso AND h.lugarCiudad = :destino")
     List<HotelObject> findByFechasYDestino(@Param("fechaPartida") LocalDate fechaPartida, @Param("fechaRegreso") LocalDate fechaRegreso, @Param("destino") String destino);
 
+
+
+     @Query("SELECT h FROM HotelObject h WHERE  h.lugarCiudad = :destino AND h.reservado = false ORDER BY h.precioPorNoche ASC")
+     List<HotelObject> findCheapestHotels(@Param("destino") String destino);
 }
