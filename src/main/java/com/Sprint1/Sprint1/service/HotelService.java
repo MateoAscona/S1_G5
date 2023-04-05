@@ -166,4 +166,9 @@ public class HotelService {
             throw new HotelNoEncontradoException();
         }
     }
+        public List<HotelObject> listarHotelesPorPrecioAs() {
+            return iHotelRepository.listarHotelesPorPrecioAs();
+        }
 }
+
+

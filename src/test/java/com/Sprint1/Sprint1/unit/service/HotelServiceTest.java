@@ -19,6 +19,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.Null;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -98,4 +99,12 @@ public class HotelServiceTest {
                 ()-> hotelService.hotelReservaImpl(hotel));
 
     }
+    @Test
+    public void listarHotelesPorPrecioAsTest() {
+        // arrange
+        List<HotelObject> expected = List.of(HotelFactory.getHotelListarPorPrecioAs());
+
+        Double precioPorNoche = null;
+
+        }
 }

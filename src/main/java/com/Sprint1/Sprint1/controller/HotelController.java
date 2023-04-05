@@ -41,6 +41,11 @@ public class HotelController {
         return hotelService.listarReservasHotel();
     }
 
+     @GetMapping("/api/v1/hotels/order")
+     public List<HotelObject>listarHotelesPorPrecioAs(@RequestParam(required = false)Double precioPorNoche){
+       return hotelService.listarHotelesPorPrecioAs();
+        }
+
     @PostMapping("/api/v1/hotels/new")
     public HotelDTO crearHotel(@RequestBody HotelDTO nuevoHotel) {
         return hotelService.nuevoHotel(nuevoHotel);
